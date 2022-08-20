@@ -114,6 +114,22 @@ public class Event {
 		this.location = location;
 	}
 
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public List<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
+
 	public Date getCreatedAt() {
 		return createdAt;
 	}
