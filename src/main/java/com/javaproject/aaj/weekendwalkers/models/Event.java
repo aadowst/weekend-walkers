@@ -16,51 +16,52 @@ import javax.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name="events")
+@Table(name = "events")
 public class Event {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@NotNull
-	@Size(min=1)
+	@Size(min = 1)
 	private String name;
-	
+
 	@NotNull
-	@DateTimeFormat(pattern="MM-dd-yyyy")
+	@DateTimeFormat(pattern = "MM-dd-yyyy")
 	private Date date;
-	
+
 	@NotNull
-	@DateTimeFormat(pattern="HH:mm")
+	@DateTimeFormat(pattern = "HH:mm")
 	private Date time;
-	
+
 	@NotNull
-	@Size(min=1)
+	@Size(min = 1)
 	private String location;
-	
+
 	protected void whenCreated() {
 		this.date = new Date();
 		this.time = new Date();
 	}
-	
-	@Column(updatable=false)
-	@DateTimeFormat(pattern="yyyy-MM-dd")
+
+	@Column(updatable = false)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date createdAt;
-	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date updatedAt;
-	  
+
 	@PrePersist
-	protected void onCreate(){
+	protected void onCreate() {
 		this.createdAt = new Date();
 	}
-	    
+
 	@PreUpdate
-	protected void onUpdate(){
+	protected void onUpdate() {
 		this.updatedAt = new Date();
 	}
-	
-	public Event() {}
+
+	public Event() {
+	}
 
 	public Long getId() {
 		return id;
@@ -117,5 +118,5 @@ public class Event {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-	
+
 }

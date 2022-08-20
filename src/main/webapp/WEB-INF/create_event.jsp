@@ -11,45 +11,67 @@
 <link rel="stylesheet" type="text/css" href="/css/style.css">
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
-<title>Book Share</title>
+<title>Create an Event</title>
 </head>
 <body>
-<div class="in-line">
-<h2 class="float-left"><a href="/books">back to the shelves</a></h2>
+<div class="container">
+<div class="nav">
+INSERT NAV BAR HERE
 </div>
-<h1>Add a Book to Your Shelf!</h1>
 
-<form:form action="/newBook" method="post" modelAttribute="book">
+<div class="content d-flex justify-content-around align-items-center">
+<div class="content-left col-4">
+INSERT GOOGLE MAPS
+</div>
+<div class="content-right form col-8">
 
-	<table>
-	    <thead>
-	    	<tr>
-	            <td class="float-left">Title:</td>
-	            <td class="float-left">
-	            	<form:errors path="title" class="text-danger"/>
-					<form:input class="input" path="title"/>
-	            </td>
-	        </tr>
-	        <tr>
-	            <td class="float-left">Author:</td>
-	            <td class="float-left">
-	            	<form:errors path="author" class="text-danger"/>
-					<form:input class="input" path="author"/>
-	            </td>
-	        </tr>        
-	        <tr>
-	            <td class="float-left">My Thoughts:</td>
-	            <td class="float-left">
-	            	<form:errors path="thoughts" class="text-danger"/>
-					<form:textarea rows="3" class="input" path="thoughts"/>
-	            </td>
-	        </tr>   
-	        <tr>
-	        	<td colspan=2><input class="input" class="button" type="submit" value="Submit"/></td>
-	        </tr>
-	    </thead>
-	</table>
-</form:form>
+		<form:form action="/events/create" method="post" modelAttribute="event">
+<%-- 			<form:input type="hidden" path="user" value="${user.id }" /> --%>
+
+			<div class="form-group d-flex justify-content-between my-2">
+				<form:label path="name" class="w-25">Title  </form:label>
+				<form:input type="text" path="name" class="w-75" />
+			</div>
+			<form:errors class="text-danger" path="name" />
+
+			<div class="form-group d-flex justify-content-between my-2">
+				<form:label path="date" class="w-25">Date  </form:label>
+				<form:input type="date" path="date" class="w-75" />
+			</div>
+			<form:errors class="text-danger" path="date" />
+
+			<div class="form-group d-flex justify-content-between my-2">
+				<form:label path="time" class="w-25">Time </form:label>
+				<form:input type="time" path="time" class="w-75" />
+			</div>
+			<form:errors class="text-danger" path="time" />
+
+			<div class="form-group d-flex justify-content-between my-2">
+				<form:label path="location" class="w-25">location </form:label>
+				<form:input type="text" path="location" class="w-75" />
+			</div>
+			<form:errors class="text-danger" path="price" />
+
+			<div class="form-group d-flex justify-content-between my-2">
+				<form:label path="description" class="w-25">Description </form:label>
+				<form:textarea path="description" class="w-75" />
+			</div>
+			<form:errors class="text-danger" path="description" />
+			<div>
+				<a href="/classes"><button class="btn btn-warning">Cancel</button></a>
+				<input type="submit" value="Submit" class="btn btn-info  mx-2">
+			</div>
+		</form:form>
+
+</div>
+</div>
+
+
+
+</div>
+
+
+	
 
 
 
