@@ -14,9 +14,8 @@
 <title>Create an Event</title>
 </head>
 <body>
-<div class="container">
-<div class="nav">
-INSERT NAV BAR HERE
+<div class="in-line">
+<h2 class="float-left"><a href="/books">back to the shelves</a></h2>
 </div>
 
 <div class="content d-flex justify-content-around align-items-center">
@@ -75,5 +74,5 @@ INSERT GOOGLE MAPS
 
 
 
-</body>
+</body> --%>
 </html>
