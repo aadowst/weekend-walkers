@@ -35,7 +35,7 @@ public class ClubController {
 		}
 		Long id = (Long) session.getAttribute("user_id");
 		User user = userServ.getOne(id);
-		club.setOrganizer(user);
+		club.setOrganizer(user.getUserName());
 		return "redirect:/events";
 	}
 	

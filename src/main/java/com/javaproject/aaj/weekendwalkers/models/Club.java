@@ -36,7 +36,7 @@ public class Club {
 	
 	@NotNull
 	@Size(min=1)
-	private User organizer;
+	private String organizer;
 	
 	@Column(updatable=false)
 	@DateTimeFormat(pattern="yyyy-MM-dd")
@@ -83,11 +83,11 @@ public class Club {
 		this.location = location;
 	}
 
-	public User getOrganizer() {
+	public String getOrganizer() {
 		return organizer;
 	}
 
-	public void setOrganizer(User organizer) {
+	public void setOrganizer(String organizer) {
 		this.organizer = organizer;
 	}
 
