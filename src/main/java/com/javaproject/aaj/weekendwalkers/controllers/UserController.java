@@ -32,7 +32,7 @@ public class UserController {
 		return "index.jsp";
 	}
 	
-	@GetMapping("/events")
+	@GetMapping("/dashboard")
 	public String dashboard(Model model, HttpSession session) {
 		if(session.getAttribute("user_id") == null) {
 			return "redirect:/";
