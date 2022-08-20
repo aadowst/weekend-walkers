@@ -57,6 +57,14 @@ public class User {
 	@JoinColumn(name="club_id")
 	private Club club;
 	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="event_id")
+	private Event event;
+	
+	
+	
+	
+	
 	@Column(updatable=false)
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date createdAt;

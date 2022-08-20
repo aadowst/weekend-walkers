@@ -1,12 +1,18 @@
 package com.javaproject.aaj.weekendwalkers.models;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -49,7 +55,14 @@ public class Event {
 	private Date createdAt;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date updatedAt;
+<<<<<<< HEAD
 
+=======
+	
+	@OneToMany(mappedBy = "event", cascade= CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<User> users;
+	  
+>>>>>>> 6d2382079cfa311a38db80f8f39e20b9ebe254bf
 	@PrePersist
 	protected void onCreate() {
 		this.createdAt = new Date();
