@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.javaproject.aaj.weekendwalkers.models.LoginUser;
 import com.javaproject.aaj.weekendwalkers.models.User;
+import com.javaproject.aaj.weekendwalkers.services.ClubService;
 import com.javaproject.aaj.weekendwalkers.services.UserService;
 
 @Controller
@@ -20,25 +21,25 @@ public class UserController {
 	@Autowired
 	private UserService uServ;
 	
-//	@Autowired
-//	private ShowService sServ;
+	@Autowired
+	private ClubService clubServ;
 	
 	@GetMapping("/")
 	public String index(@ModelAttribute("user") User user, @ModelAttribute("loginUser") LoginUser loginUser, HttpSession session) {
 		if(session.getAttribute("user_id") != null) {
-			return "redirect:/dashboard";
+			return "redirect:/events";
 		}
 		return "index.jsp";
 	}
 	
-	@GetMapping("/dashboard")
+	@GetMapping("/events")
 	public String dashboard(Model model, HttpSession session) {
 		if(session.getAttribute("user_id") == null) {
 			return "redirect:/";
 		}
 		Long id = (Long) session.getAttribute("user_id");
 		User user = uServ.getOne(id);
-//		model.addAttribute("shows", sServ.allShows());
+		model.addAttribute("clubs", clubServ.allClubs());
 		model.addAttribute("user",user);
 		return "dashboard.jsp";
 	}
@@ -56,7 +57,7 @@ public class UserController {
 		
 		session.setAttribute("user_id", newUser.getId());
 		
-		return "redirect:/dashboard";
+		return "redirect:/events";
 	}
 	
 	@PostMapping("/login")
@@ -70,7 +71,7 @@ public class UserController {
 		
 		session.setAttribute("user_id", newUser.getId());
 		
-		return "redirect:/dashboard";
+		return "redirect:/events";
 	}
 	
 	@GetMapping("/logout")
