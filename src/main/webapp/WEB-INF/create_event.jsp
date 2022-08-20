@@ -13,7 +13,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 <title>Book Share</title>
 </head>
-<body>
+<%-- <body>
 <div class="in-line">
 <h2 class="float-left"><a href="/books">back to the shelves</a></h2>
 </div>
@@ -53,5 +53,5 @@
 
 
 
-</body>
+</body> --%>
 </html>
