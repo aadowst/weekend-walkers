@@ -43,6 +43,10 @@ public class Event {
 	@Size(min = 1)
 	private String location;
 
+	@NotNull
+	@Size(min = 10)
+	private String description;
+
 	protected void whenCreated() {
 		this.date = new Date();
 		this.time = new Date();
