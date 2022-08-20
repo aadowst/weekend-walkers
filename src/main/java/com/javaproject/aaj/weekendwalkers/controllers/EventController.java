@@ -32,8 +32,10 @@ public class EventController {
 //	CREATE
 	@GetMapping("/new")
 	public String newEvent(Model model, @ModelAttribute("event") Event event, HttpSession session) {
-		User user = userService.getOne((Long) session.getAttribute("userId"));
-		model.addAttribute("user", user);
+		if (session.getAttribute("userId") != null) {
+			User user = userService.getOne((Long) session.getAttribute("userId"));
+			model.addAttribute("user", user);
+		}
 		return "create_event.jsp";
 	}
 
@@ -53,9 +55,10 @@ public class EventController {
 
 	@GetMapping("")
 	public String showAllEvents(Model model, HttpSession session) {
-		User user = userService.getOne((Long) session.getAttribute("userId"));
-		model.addAttribute("user", user);
-
+		if (session.getAttribute("userId") != null) {
+			User user = userService.getOne((Long) session.getAttribute("userId"));
+			model.addAttribute("user", user);
+		}
 		List<Event> listOfEvents = eventService.getAll();
 		model.addAttribute("listOfEvents", listOfEvents);
 		return "dashboard.jsp";
