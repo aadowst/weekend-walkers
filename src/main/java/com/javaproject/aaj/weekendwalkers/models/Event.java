@@ -10,8 +10,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
@@ -45,6 +43,10 @@ public class Event {
 	@Size(min = 1)
 	private String location;
 
+	@NotNull
+	@Size(min = 10)
+	private String description;
+
 	protected void whenCreated() {
 		this.date = new Date();
 		this.time = new Date();
@@ -59,6 +61,8 @@ public class Event {
 	@OneToMany(mappedBy = "event", cascade= CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<User> users;
 	  
+	@OneToMany(mappedBy = "event", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<User> users;
 
 	@PrePersist
 	protected void onCreate() {
@@ -111,6 +115,22 @@ public class Event {
 
 	public void setLocation(String location) {
 		this.location = location;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public List<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(List<User> users) {
+		this.users = users;
 	}
 
 	public Date getCreatedAt() {
