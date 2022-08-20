@@ -55,14 +55,11 @@ public class Event {
 	private Date createdAt;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date updatedAt;
-<<<<<<< HEAD
 
-=======
-	
 	@OneToMany(mappedBy = "event", cascade= CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<User> users;
 	  
->>>>>>> 6d2382079cfa311a38db80f8f39e20b9ebe254bf
+
 	@PrePersist
 	protected void onCreate() {
 		this.createdAt = new Date();
