@@ -61,8 +61,6 @@ public class Event {
 	@OneToMany(mappedBy = "event", cascade= CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<User> users;
 	  
-	@OneToMany(mappedBy = "event", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private List<User> users;
 
 	@PrePersist
 	protected void onCreate() {
