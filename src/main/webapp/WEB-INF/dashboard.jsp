@@ -96,20 +96,21 @@
       
 <!-- right drop down menu -->
  <div class="btn-group m-2 my-menu">
-  <button type="button" class="btn btn-info dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <button type="button" class="btn btn-info dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="nav-btn">
     Menu
   </button>
   <div class="dropdown-menu">
-    <a class="dropdown-item" href="/events">Dashboard</a>
+    <a class="dropdown-item" href="/events">View all Events</a>
     <a class="dropdown-item" href="/clubs">View all Clubs</a>
     <a class="dropdown-item" href="/clubs/new">Create a Club</a>
+    <a class="dropdown-item" href="/events/new">Create an Event</a>
     <div class="dropdown-divider"></div>
     <a class="dropdown-item" href="/logout">LogOut</a>
   </div>
 </div>
 
 <a class="btn btn-secondary" href="/logout" role="button">LogOut</a>
-<a class="btn btn-secondary m-2" href="/login" role="button" id = "login_btn"> LogIn</a>
+<a class="btn btn-secondary m-2" href="/login" role="button" id = "login_btn"> LogIn/Register</a>
 
     </div>
     <!-- Right elements -->
