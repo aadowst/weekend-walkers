@@ -40,6 +40,11 @@ public class ClubController {
 	}
 	
 	//Read
+	@GetMapping("/clubs/new")
+	public String newclub(@ModelAttribute("club") Club club) {
+		return "create_club.jsp";		
+	}
+	
 	@GetMapping("/clubs")
 	public String showClubs(Model model) {
 		model.addAttribute("clubs", clubServ.allClubs());
