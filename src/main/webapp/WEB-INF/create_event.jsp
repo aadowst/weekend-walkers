@@ -36,7 +36,9 @@
 
 			<form:form action="/events/create" method="post"
 				modelAttribute="event">
-				<%-- 			<form:input type="hidden" path="user" value="${user.id }" /> --%>
+				<!-- Hard coded the user id for development -->
+<%-- 				<form:input type="hidden" path="user" value="${user.id }" /> --%>
+				<%-- <form:input type="hidden" path="user" value="1" /> --%>
 
 				<div class="form-group d-flex justify-content-between my-2">
 					<form:label path="name" class="w-25">Title  </form:label>
