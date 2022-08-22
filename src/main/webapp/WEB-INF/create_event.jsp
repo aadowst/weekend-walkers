@@ -64,7 +64,7 @@
       </a>
 
       <!-- Notifications -->
-      <div class="dropdown">
+  <!--     <div class="dropdown">
         <a
           class="text-reset me-3 dropdown-toggle hidden-arrow"
           href="#"
@@ -90,7 +90,7 @@
             <a class="dropdown-item" href="#">Something else here</a>
           </li>
         </ul>
-      </div>
+      </div> -->
       
 <!-- right drop down menu -->
  <div class="btn-group m-2 my-menu">
