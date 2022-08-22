@@ -61,4 +61,8 @@ public class UserService {
 		return uRepo.findById(id).orElse(null);
 	}
 	
+	public User update(User user) {
+		return uRepo.save(user);
+	}
+	
 }
