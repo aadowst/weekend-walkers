@@ -51,9 +51,6 @@
           <a class="nav-link" href="/events">Dashboard</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/clubs">View Clubs</a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link" href="/events/new">Post an Event</a>
         </li>
       </ul>
@@ -75,7 +72,7 @@
           href="#"
           id="navbarDropdownMenuLink"
           role="button"
-          data-mdb-toggle="dropdown"
+          data-bs-toggle="dropdown"
           aria-expanded="false"
         >
           <i class="fas fa-bell"></i>
@@ -97,22 +94,23 @@
         </ul>
       </div>
       
-<a class="btn btn-secondary" href="/logout" role="button">LogOut</a>
-<a class="btn btn-secondary m-2" href="/login" role="button" id = "login_btn"> LogIn</a>
-
-<!-- Example single danger button -->
-<div class="btn-group">
+<!-- right drop down menu -->
+ <div class="btn-group m-2 my-menu">
   <button type="button" class="btn btn-info dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     Menu
   </button>
   <div class="dropdown-menu">
-    <a class="dropdown-item" href="#">Action</a>
-    <a class="dropdown-item" href="#">Another action</a>
-    <a class="dropdown-item" href="#">Something else here</a>
+    <a class="dropdown-item" href="/events">Dashboard</a>
+    <a class="dropdown-item" href="/clubs">View all Clubs</a>
+    <a class="dropdown-item" href="/clubs/new">Create a Club</a>
     <div class="dropdown-divider"></div>
-    <a class="dropdown-item" href="#">Separated link</a>
+    <a class="dropdown-item" href="/logout">Logout</a>
   </div>
 </div>
+
+<a class="btn btn-secondary" href="/logout" role="button">LogOut</a>
+<a class="btn btn-secondary m-2" href="/login" role="button" id = "login_btn"> LogIn</a>
+
     </div>
     <!-- Right elements -->
   </div>
