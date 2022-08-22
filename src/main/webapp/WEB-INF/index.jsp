@@ -1,20 +1,71 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ page isErrorPage="true" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core"%>
+   <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ page isErrorPage="true" %> 
 <!DOCTYPE html>
 <html>
 <head>
-<!-- CSS only -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-<link rel="stylesheet" type="text/css" href="/css/style.css">
-<!-- JavaScript Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
-<title>Book Share</title>
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+<!-- YOUR own local CSS -->
+<link rel="stylesheet" href="/css/main.css"/>
+<meta charset="ISO-8859-1">
+<title>Login and Registration</title>
 </head>
 <body>
-<h1>hello</h1>
-llflf
+<div class="container">
+<div class="main d-flex">
+<div class="register col-8">
+<h2>Register</h2>
+<form:form action="/register" method="post" modelAttribute="newUser">
+
+
+
+<div class="form-group">
+<form:label path="userName">User Name:  </form:label>
+<form:input type="text" path="userName"/>
+<form:errors class="text-danger" path="userName"/>
+</div>
+
+<div class="form-group">
+<form:label path="email">Email:  </form:label>
+<form:input type="text" path="email"/>
+<form:errors class="text-danger" path="email"/>
+</div>
+
+<div class="form-group">
+<form:label path="password">Password: </form:label>
+<form:input type="password" path="password"/>
+<form:errors class="text-danger" path="password"/>
+</div>
+
+<div class="form-group">
+<form:label path="confirm">Confirm Password: </form:label>
+<form:input type="password" path="confirm"/>
+<form:errors class="text-danger" path="confirm"/>
+</div>
+<input type="submit" value="Register" class="btn btn-info">
+</form:form>
+</div>
+<div class="login col-4">
+<h2>Login</h2>
+<form:form action="/login" method="post" modelAttribute="newLogin">
+<div class="form-group">
+<form:label path="email">Email:  </form:label>
+<form:input type="text" path="email"/>
+<form:errors class="text-danger" path="email"/>
+</div>
+
+<div class="form-group">
+<form:label path="password">Password: </form:label>
+<form:input type="password" path="password"/>
+<form:errors class="text-danger" path="password"/>
+</div>
+<input type="submit" value="Register" class="btn btn-success">
+
+</form:form>
+</div>
+</div>
+</div>
 </body>
 </html>
