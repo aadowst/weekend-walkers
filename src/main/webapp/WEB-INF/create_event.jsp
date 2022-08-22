@@ -159,11 +159,9 @@
 				<form:errors class="text-danger" path="time" />
 
 				<div class="form-group d-flex justify-content-between my-2">
-					<form:label path="openToPublic" class="w-25" for="true">Public </form:label>
-					<form:radiobuttons type="radiobuttons" path="openToPublic" class="w-75" value="true"/>
+					<form:label path="openToPublic" class="w-25">Open to Public? </form:label>
+					<form:checkbox path="openToPublic" class="w-75" value="true"/>
 					
-					<form:label path="openToPublic" class="w-25" for="false">Private </form:label>
-					<form:radiobuttons type="radiobuttons" path="openToPublic" class="w-75" value="false"/>
 				</div>
 				<form:errors class="text-danger" path="openToPublic" />
 
