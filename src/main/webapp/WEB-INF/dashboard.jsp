@@ -104,7 +104,7 @@
     <a class="dropdown-item" href="/clubs">View all Clubs</a>
     <a class="dropdown-item" href="/clubs/new">Create a Club</a>
     <div class="dropdown-divider"></div>
-    <a class="dropdown-item" href="/logout">Logout</a>
+    <a class="dropdown-item" href="/logout">LogOut</a>
   </div>
 </div>
 
