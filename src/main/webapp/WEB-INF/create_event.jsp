@@ -108,7 +108,7 @@
 </div>
 
 <a class="btn btn-secondary" href="/logout" role="button">LogOut</a>
-<a class="btn btn-secondary m-2" href="/login" role="button" id = "login_btn"> LogIn/Register</a>
+<a class="btn btn-secondary m-2" href="/" role="button" id = "login_btn"> LogIn/Register</a>
 
     </div>
     <!-- Right elements -->
@@ -116,7 +116,7 @@
   <!-- Container wrapper -->
 </nav>
 <!-- Navbar -->
-<h1 class="test">hey</h1>
+<h1 class="test">hey, <c:out value="${user.userName }"/></h1>
 
 <!-- JavaScript Bundle with Popper -->
 
@@ -136,9 +136,9 @@
 
 			<form:form action="/events/create" method="post"
 				modelAttribute="event">
-				<!-- Hard coded the user id for development -->
-<%-- 				<form:input type="hidden" path="user" value="${user.id }" /> --%>
-				<%-- <form:input type="hidden" path="user" value="1" /> --%>
+
+			<form:input type="hidden" path="users" value="${user.id }" />
+
 
 				<div class="form-group d-flex justify-content-between my-2">
 					<form:label path="name" class="w-25">Title  </form:label>
