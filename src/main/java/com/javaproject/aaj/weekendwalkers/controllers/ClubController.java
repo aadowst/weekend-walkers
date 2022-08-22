@@ -35,13 +35,19 @@ public class ClubController {
 		}
 		Long id = (Long) session.getAttribute("user_id");
 		User user = userServ.getOne(id);
-		club.setOrganizer(user.getUserName());
-		return "redirect:/events";
+		Club newClub = clubServ.createClub(club);
+		user.setClub(newClub);
+		userServ.update(user);
+	
+		return "redirect:/clubs";
 	}
 	
 	//Read
 	@GetMapping("/clubs/new")
-	public String newclub(@ModelAttribute("club") Club club) {
+	public String newclub(@ModelAttribute("club") Club club, Model model, HttpSession session) {
+		Long id = (Long) session.getAttribute("user_id");
+		User user = userServ.getOne(id);
+		model.addAttribute("user", user);
 		return "create_club.jsp";		
 	}
 	
