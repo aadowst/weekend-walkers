@@ -47,6 +47,9 @@ public class Event {
 	@Size(min = 10)
 	private String description;
 
+	@NotNull
+	private boolean openToPublic;
+
 	protected void whenCreated() {
 		this.date = new Date();
 		this.time = new Date();
@@ -58,9 +61,8 @@ public class Event {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date updatedAt;
 
-	@OneToMany(mappedBy = "event", cascade= CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "event", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<User> users;
-	
 
 	@PrePersist
 	protected void onCreate() {
@@ -145,6 +147,14 @@ public class Event {
 
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
+	}
+
+	public boolean isOpenToPublic() {
+		return openToPublic;
+	}
+
+	public void setOpenToPublic(boolean openToPublic) {
+		this.openToPublic = openToPublic;
 	}
 
 }
