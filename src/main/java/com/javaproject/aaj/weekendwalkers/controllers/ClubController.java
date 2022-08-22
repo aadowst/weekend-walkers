@@ -46,8 +46,10 @@ public class ClubController {
 	}
 	
 	@GetMapping("/clubs")
-	public String showClubs(Model model) {
+	public String showClubs(Model model, HttpSession session) {
+		User user = userServ.getOne((Long) session.getAttribute("user_id"));
 		model.addAttribute("clubs", clubServ.allClubs());
+		model.addAttribute("user", user);
 		return "view_clubs.jsp";
 	}
 	
