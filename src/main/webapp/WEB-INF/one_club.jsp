@@ -14,6 +14,43 @@
 <title>Book Share</title>
 </head>
 <body>
-<h1>hello</h1>
+
+	<h1>
+		Hello,
+		<%-- <c:out value="${user.userName}"></c:out> --%> 
+	</h1>
+
+	<div class="container">
+		<div class="col-4">
+		
+		</div>
+		<table class="table table-hover col-8">
+			<thead>
+				<tr>
+					<th scope="col">Club</th>
+					<th scope="col">Location</th>
+					<th scope="col">Organizer</th>
+					<th scope="col"># Of Members</th>
+				</tr>
+			</thead>
+			<tbody>
+			<c:forEach var="club" items="${clubs}">
+				<tr>
+					<th scope="row"><c:out value="${club.name}"></c:out></th>
+					<td><c:out value="${club.location}"></c:out></td>
+					<td><c:out value="${club.organizer}"></c:out></td>
+					<td><c:out value="${club.users}"></c:out></td>
+				</tr>
+			</c:forEach>
+			</tbody>
+		</table>
+		
+
+	</div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
 </body>
 </html>
