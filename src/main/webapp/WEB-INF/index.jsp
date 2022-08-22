@@ -17,7 +17,7 @@
 <div class="main d-flex">
 <div class="register col-8">
 <h2>Register</h2>
-<form:form action="/register" method="post" modelAttribute="newUser">
+<form:form action="/register" method="post" modelAttribute="user">
 
 
 
@@ -49,7 +49,7 @@
 </div>
 <div class="login col-4">
 <h2>Login</h2>
-<form:form action="/login" method="post" modelAttribute="newLogin">
+<form:form action="/login" method="post" modelAttribute="loginUser">
 <div class="form-group">
 <form:label path="email">Email:  </form:label>
 <form:input type="text" path="email"/>
