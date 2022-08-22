@@ -63,8 +63,6 @@ public class User {
 	
 	
 	
-	
-	
 	@Column(updatable=false)
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date createdAt;

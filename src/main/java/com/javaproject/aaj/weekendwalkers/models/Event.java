@@ -58,8 +58,9 @@ public class Event {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date updatedAt;
 
-	@OneToMany(mappedBy = "event", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "event", cascade= CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<User> users;
+	
 
 	@PrePersist
 	protected void onCreate() {
