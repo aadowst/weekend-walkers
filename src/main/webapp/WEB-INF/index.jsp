@@ -19,13 +19,15 @@
 </head>
 <body>
 	<div class="container">
-		<div>
+		<div class="d-flex my-2">
 
 			<h2>Welcome Weekend Walkers</h2>
 
 
 
 		</div>
+<div class="content d-flex">
+
 
 		<div class="main d-flex col-9 justify-content-between">
 			<div class="register col-4">
@@ -56,37 +58,40 @@
 						<form:input type="password" path="confirm" />
 						<form:errors class="text-danger" path="confirm" />
 					</div>
+					<div>
+						<input type="submit" value="Register" class="btn btn-info">
+					</div>
+				</form:form>
+			</div>
 
+			<div class="login col-4">
+				<h4>Login</h4>
+				<form:form action="/login" method="post" modelAttribute="loginUser">
+					<div class="form-group d-flex justify-content-between my-2">
+						<form:label path="email">Email:  </form:label>
+						<form:input type="text" path="email" />
+					</div>
+					<form:errors class="text-danger" path="email" />
+	
+					<div class="form-group d-flex justify-content-between my-2">
+						<form:label path="password">Password: </form:label>
+						<form:input type="password" path="password" />
+					</div>
+					<form:errors class="text-danger" path="password" />
+					<div>
+						<input type="submit" value="Login" class="btn btn-success">
+					</div>
+	
 				</form:form>
 			</div>
 		</div>
-	</div>
-	<div>
-		<input type="submit" value="Register" class="btn btn-info">
-	</div>
 
 
-	<div class="login col-4">
-		<h4>Login</h4>
-		<form:form action="/login" method="post" modelAttribute="loginUser">
-			<div class="form-group d-flex justify-content-between my-2">
-				<form:label path="email">Email:  </form:label>
-				<form:input type="text" path="email" />
-			</div>
-			<form:errors class="text-danger" path="email" />
 
-			<div class="form-group d-flex justify-content-between my-2">
-				<form:label path="password">Password: </form:label>
-				<form:input type="password" path="password" />
-			</div>
-			<form:errors class="text-danger" path="password" />
-			<div>
-				<input type="submit" value="Login" class="btn btn-success">
-			</div>
 
-		</form:form>
 	</div>
 
+</div>
 
 	<script
 		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
