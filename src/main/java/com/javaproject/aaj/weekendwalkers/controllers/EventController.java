@@ -32,8 +32,8 @@ public class EventController {
 //	CREATE
 	@GetMapping("/new")
 	public String newEvent(Model model, @ModelAttribute("event") Event event, HttpSession session) {
-		if (session.getAttribute("userId") != null) {
-			User user = userService.getOne((Long) session.getAttribute("userId"));
+		if (session.getAttribute("user_id") != null) {
+			User user = userService.getOne((Long) session.getAttribute("user_id"));
 			model.addAttribute("user", user);
 		}
 		return "create_event.jsp";
@@ -43,7 +43,7 @@ public class EventController {
 	public String createEvent(HttpSession session, Model model, @Valid @ModelAttribute("event") Event event,
 			BindingResult result) {
 		if (result.hasErrors()) {
-			User user = userService.getOne((Long) session.getAttribute("userId"));
+			User user = userService.getOne((Long) session.getAttribute("user_id"));
 			model.addAttribute("user", user);
 			return "create_event.jsp";
 		}
@@ -55,8 +55,8 @@ public class EventController {
 
 	@GetMapping("")
 	public String showAllEvents(Model model, HttpSession session) {
-		if (session.getAttribute("userId") != null) {
-			User user = userService.getOne((Long) session.getAttribute("userId"));
+		if (session.getAttribute("user_id") != null) {
+			User user = userService.getOne((Long) session.getAttribute("user_id"));
 			model.addAttribute("user", user);
 		}
 		List<Event> listOfEvents = eventService.getAll();
@@ -66,7 +66,7 @@ public class EventController {
 
 	@GetMapping("/{id}")
 	public String showOneEvent(@PathVariable("id") Long id, Model model, HttpSession session) {
-		User user = userService.getOne((Long) session.getAttribute("userId"));
+		User user = userService.getOne((Long) session.getAttribute("user_id"));
 		model.addAttribute("user", user);
 
 		Event event = eventService.getOne(id);
@@ -79,7 +79,7 @@ public class EventController {
 
 	@GetMapping("/{id}/edit")
 	public String editEvent(@PathVariable("id") Long id, Model model, HttpSession session) {
-		User user = userService.getOne((Long) session.getAttribute("userId"));
+		User user = userService.getOne((Long) session.getAttribute("user_id"));
 		model.addAttribute("user", user);
 
 		Event event = eventService.getOne(id);
@@ -92,7 +92,7 @@ public class EventController {
 	public String updateEvent(@PathVariable("id") Long id, HttpSession session, Model model,
 			@Valid @ModelAttribute("event") Event event, BindingResult result) {
 		if (result.hasErrors()) {
-			User user = userService.getOne((Long) session.getAttribute("userId"));
+			User user = userService.getOne((Long) session.getAttribute("user_id"));
 			model.addAttribute("user", user);
 			return "create_event.jsp";
 		}
