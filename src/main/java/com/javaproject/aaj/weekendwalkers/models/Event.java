@@ -32,7 +32,7 @@ public class Event {
 	private String name;
 
 	@NotNull
-	@DateTimeFormat(pattern = "MM-dd-yyyy")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date date;
 
 	@NotNull

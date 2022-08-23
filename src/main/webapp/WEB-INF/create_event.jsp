@@ -131,7 +131,7 @@
 	</div>
 
 	<div class="content d-flex justify-content-around align-items-center">
-		<div class="content-left col-4">INSERT GOOGLE MAPS</div>
+		<div class="content-left col-4 mx-5" id="googleMap" style="height:400px;">INSERT GOOGLE MAPS</div>
 		<div class="content-right form col-8">
 
 			<form:form action="/events/create" method="post"
@@ -187,6 +187,22 @@
 
 
 </div>
+
+<!-- <script>
+  function myMap() {
+  var mapProp= {
+    center:new google.maps.LatLng(51.508742,-0.120850),
+    zoom:5,
+  };
+  
+  var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+
+  } -->
+
+<script src="/js/script.js"></script>
+  </script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA246nlIjYYGu89FdDHR5g0NiJbIyr9L3k&callback=initMap"></script>
+
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>

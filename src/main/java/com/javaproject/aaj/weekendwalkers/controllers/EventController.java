@@ -39,15 +39,18 @@ public class EventController {
 		return "create_event.jsp";
 	}
 
+	@SuppressWarnings("unchecked")
 	@PostMapping("/create")
 	public String createEvent(HttpSession session, Model model, @Valid @ModelAttribute("event") Event event,
 			BindingResult result) {
+		User user = userService.getOne((Long) session.getAttribute("user_id"));
 		if (result.hasErrors()) {
-			User user = userService.getOne((Long) session.getAttribute("user_id"));
+
 			model.addAttribute("user", user);
 			return "create_event.jsp";
 		}
 		Event newEvent = eventService.save(event);
+		newEvent.setUsers((List<User>) user);
 		return "redirect:/events/" + newEvent.getId();
 	}
 
