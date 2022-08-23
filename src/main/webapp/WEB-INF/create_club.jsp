@@ -130,7 +130,7 @@
 					<form:input type="text" path="location" class="form-control"/>
 					<form:errors class="text-danger" path="location" />
 				</div><br>
-				<form:input type="hidden" value="${user.userName}" path="organizer"></form:input>
+			
 				<div>
 					<input type="submit" value="+ Create Club" class="btn btn-info">
 					</div>

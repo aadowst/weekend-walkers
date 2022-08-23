@@ -1,7 +1,9 @@
 package com.javaproject.aaj.weekendwalkers.models;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 //import java.util.List;
 //
 //import javax.persistence.CascadeType;
@@ -13,7 +15,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 //import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
@@ -50,18 +55,16 @@ public class User {
 	@Size(min=8, max=128, message="Confirm Password must be between 8 and 128 characters")
 	private String confirm;
 	
-//	@OneToMany(mappedBy="user", cascade= CascadeType.ALL, fetch = FetchType.LAZY)
-//	private List<Show> shows;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="club_id")
-	private Club club;
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name="clubs_users", joinColumns = @JoinColumn(name="club_id"), inverseJoinColumns= @JoinColumn(name="user_id"))
+	private List<Club> clubs;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="event_id")
 	private Event event;
 	
-	
+	@OneToMany(mappedBy="organizer", cascade= CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<Club> createdClubs;
 	
 	@Column(updatable=false)
 	@DateTimeFormat(pattern="yyyy-MM-dd")
@@ -145,13 +148,34 @@ public class User {
 		this.updatedAt = updatedAt;
 	}
 
-//	public List<Show> getShows() {
-//		return shows;
-//	}
-//
-//	public void setShows(List<Show> shows) {
-//		this.shows = shows;
-//	}
+	public Event getEvent() {
+		return event;
+	}
+
+	public void setEvent(Event event) {
+		this.event = event;
+	}
+
+	public List<Club> getClubs() {
+		return clubs;
+	}
+
+	public void setClubs(List<Club> clubs) {
+		this.clubs = clubs;
+	}
+
+	public List<Club> getCreatedClubs() {
+		return createdClubs;
+	}
+
+	public void setCreatedClubs(List<Club> createdClubs) {
+		this.createdClubs = createdClubs;
+	}
+	
+
 	
 	
 }
+
+	
+

@@ -1,5 +1,9 @@
 package com.javaproject.aaj.weekendwalkers.controllers;
 
+
+
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -35,9 +39,13 @@ public class ClubController {
 		}
 		Long id = (Long) session.getAttribute("user_id");
 		User user = userServ.getOne(id);
-		Club newClub = clubServ.createClub(club);
-		user.setClub(newClub);
+		club.setOrganizer(user);
+		clubServ.createClub(club);
+		List<Club> userClub = user.getClubs();
+		userClub.add(club);
+		user.setClubs(userClub);
 		userServ.update(user);
+		System.out.println(result);
 	
 		return "redirect:/clubs";
 	}
