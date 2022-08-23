@@ -10,6 +10,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
@@ -39,6 +41,14 @@ public class Event {
 	@DateTimeFormat(pattern = "HH:mm")
 	private Date time;
 
+	public Club getHostedBy() {
+		return hostedBy;
+	}
+
+	public void setHostedBy(Club hostedBy) {
+		this.hostedBy = hostedBy;
+	}
+
 	@NotNull
 	@Size(min = 1)
 	private String location;
@@ -49,6 +59,15 @@ public class Event {
 
 	@NotNull
 	private boolean openToPublic;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "club_id")
+	private Club hostedBy;
+
+	// @ManyToMany(fetch = FetchType.LAZY)
+	// @JoinTable(name = "clubs_events", joinColumns = @JoinColumn(name =
+	// "club_id"), inverseJoinColumns = @JoinColumn(name = "event_id"))
+	// private List<Club> clubs;
 
 	protected void whenCreated() {
 		this.date = new Date();
@@ -62,7 +81,7 @@ public class Event {
 	private Date updatedAt;
 
 	@OneToMany(mappedBy = "event", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private List<User> users;
+	private List<User> attendees;
 
 	@PrePersist
 	protected void onCreate() {
@@ -125,14 +144,6 @@ public class Event {
 		this.description = description;
 	}
 
-	public List<User> getUsers() {
-		return users;
-	}
-
-	public void setUsers(List<User> users) {
-		this.users = users;
-	}
-
 	public Date getCreatedAt() {
 		return createdAt;
 	}
@@ -155,6 +166,14 @@ public class Event {
 
 	public void setOpenToPublic(boolean openToPublic) {
 		this.openToPublic = openToPublic;
+	}
+
+	public List<User> getAttendees() {
+		return attendees;
+	}
+
+	public void setAttendees(List<User> attendees) {
+		this.attendees = attendees;
 	}
 
 }

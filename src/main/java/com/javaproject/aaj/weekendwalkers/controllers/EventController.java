@@ -39,7 +39,6 @@ public class EventController {
 		return "create_event.jsp";
 	}
 
-	@SuppressWarnings("unchecked")
 	@PostMapping("/create")
 	public String createEvent(HttpSession session, Model model, @Valid @ModelAttribute("event") Event event,
 			BindingResult result) {
@@ -50,7 +49,7 @@ public class EventController {
 			return "create_event.jsp";
 		}
 		Event newEvent = eventService.save(event);
-		newEvent.setUsers((List<User>) user);
+		// newEvent.setUsers((List<User>) user);
 		return "redirect:/events/" + newEvent.getId();
 	}
 

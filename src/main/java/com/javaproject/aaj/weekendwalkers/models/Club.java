@@ -3,6 +3,7 @@ package com.javaproject.aaj.weekendwalkers.models;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -22,45 +24,62 @@ import javax.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name="clubs")
+@Table(name = "clubs")
 public class Club {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@NotNull
-	@Size(min=1)
+	@Size(min = 1)
 	private String name;
-	
+
 	@NotNull
-	@Size(min=1)
+	@Size(min = 1)
 	private String location;
-	
-	@Column(updatable=false)
-	@DateTimeFormat(pattern="yyyy-MM-dd")
+
+	@Column(updatable = false)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date createdAt;
-	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date updatedAt;
-	
+
 	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name="clubs_users", joinColumns = @JoinColumn(name="user_id"), inverseJoinColumns= @JoinColumn(name="club_id"))
+	@JoinTable(name = "clubs_users", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "club_id"))
 	private List<User> users;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="organizer_id")
+	@JoinColumn(name = "organizer_id")
 	private User organizer;
-	
+
+	public List<Event> getCreatedEvents() {
+		return createdEvents;
+	}
+
+	public void setCreatedEvents(List<Event> createdEvents) {
+		this.createdEvents = createdEvents;
+	}
+
+	@OneToMany(mappedBy = "hostedBy", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<Event> createdEvents;
+
+	// @ManyToMany(fetch = FetchType.LAZY)
+	// @JoinTable(name="clubs_events", joinColumns = @JoinColumn(name="event_id"),
+	// inverseJoinColumns= @JoinColumn(name="club_id"))
+	// private List<Event> events;
+
 	@PrePersist
-	protected void onCreate(){
+	protected void onCreate() {
 		this.createdAt = new Date();
 	}
-	    
+
 	@PreUpdate
-	protected void onUpdate(){
+	protected void onUpdate() {
 		this.updatedAt = new Date();
 	}
-	
-	public Club() {}
+
+	public Club() {
+	}
 
 	public Long getId() {
 		return id;
@@ -117,9 +136,5 @@ public class Club {
 	public void setOrganizer(User organizer) {
 		this.organizer = organizer;
 	}
-
-	
-
-	
 
 }
