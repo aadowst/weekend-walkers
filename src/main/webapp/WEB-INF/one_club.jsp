@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ page isErrorPage="true"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,13 +44,13 @@
 				</thead>
 				<tbody>
 					<tr>
-						<th scope="row">Established date: <c:out value="${club.createdAt}"></c:out></th>
+						<th scope="row">Established date: <fmt:formatDate value="${club.createdAt}" pattern="MMMM dd, yyyy"></fmt:formatDate></th>
 					</tr>
 					<tr>
 						<th scope="row">Location: <c:out value="${club.location}"></c:out> </th>
 					</tr>
 					<tr>
-						<th scope="row">Organizer: <c:out value="${club.organizer}"></c:out></th>
+						<th scope="row">Organizer: <c:out value="${club.organizer.userName}"></c:out></th>
 					</tr>
 				</tbody>
 			</table>
@@ -63,11 +64,11 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="club" items="${clubs}">
+				<c:forEach var="club" items="${club.users}">
 					<tr>
-						<th scope="row"><c:out value="${club.user.userName}"></c:out></th>
-						<td>5th of April</td>
-						<td><c:out value="${club.user.email}"></c:out></td>
+						<th scope="row"><c:out value="${club.userName}"></c:out></th>
+						<td><fmt:formatDate value="${club.createdAt}" pattern="MMMM dd, yyyy"></fmt:formatDate></td>
+						<td><c:out value="${club.email}"></c:out></td>
 					</tr>
 				</c:forEach>
 			</tbody>

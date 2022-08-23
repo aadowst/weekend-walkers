@@ -67,10 +67,12 @@ public class ClubController {
 		return "view_clubs.jsp";
 	}
 	
-	@GetMapping("/clubs/show")
+	@GetMapping("/clubs/{id}")
 
-	public String oneClub(@PathVariable("id") Long id, Model model) {
-	model.addAttribute("club", clubServ.findClub(id));	
+	public String oneClub(@PathVariable("id") Long id, Model model, HttpSession session) {
+		User user = userServ.getOne((Long) session.getAttribute("user_id"));
+		model.addAttribute("club", clubServ.findClub(id));
+		model.addAttribute("user", user);
 		return "one_club.jsp";
 	}
 	

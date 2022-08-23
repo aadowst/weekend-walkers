@@ -129,8 +129,8 @@
 				<tr>
 					<th scope="row"><a href="/clubs/${club.id}"><c:out value="${club.name}"></c:out></a></th>
 					<td><c:out value="${club.location}"></c:out></td>
-					<td><c:out value="${club.organizer}"></c:out></td>
-					<td><c:out value="${club.users}"></c:out></td>
+					<td><c:out value="${club.organizer.userName}"></c:out></td>
+					<td><c:out value="${club.users.size()}"></c:out></td>
 				</tr>
 			</c:forEach>
 			</tbody>
