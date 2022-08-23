@@ -52,15 +52,10 @@ public class EventController {
 			return "create_event.jsp";
 		}
 		eventService.save(event);
-//		event.setAttendees(user);
-		List<User> eventAttendees = event.getAttendees();
-		System.out.println("EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEe" + eventAttendees);
-
-		eventAttendees.add(user);
-
-		event.setAttendees(eventAttendees);
-		eventService.save(event);
-
+		List<Event> userEvent = user.getEventsAttended();
+		userEvent.add(event);
+		user.setEventsAttended(userEvent);
+		userService.update(user);
 		return "redirect:/events/" + event.getId();
 	}
 

@@ -174,5 +174,4 @@ public class Event {
 	public void setAttendees(List<User> attendees) {
 		this.attendees = attendees;
 	}
-
 }
