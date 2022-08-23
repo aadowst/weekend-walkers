@@ -125,9 +125,9 @@
             <div class="content d-flex justify-content-around align-items-center">
               <div class="content-left col-4 mx-5" id="googleMap" style="height:400px;">INSERT GOOGLE MAPS</div>
               <div class="content-right form col-8">
-
+                The coordinates are:  <span id="latLng"></span>
                 <form:form action="/events/create" method="post" modelAttribute="event">
-
+                  
                   <form:select path="hostedBy" type="number">
                     <c:forEach var="club" items="${joinedClubs }">
                       <form:option value="${ club.id }" type="number">

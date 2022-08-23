@@ -16,15 +16,13 @@ function initMap(){
 
 
 function changeLocation(coords){
-    let location = coords;
-    console.log(location.toUrlValue());
-    map = new google.maps.Map(document.getElementById("googleMap"), {zoom: 12, center: location});
+    map = new google.maps.Map(document.getElementById("googleMap"), {zoom: 12, center: coords});
     var marker = new google.maps.Marker({
-        position: location, map: map
+        position: coords, map: map
     });
     google.maps.event.addListener(map, 'click', function(event){
         changeLocation(event.latLng)
     })
+    document.getElementById("latLng").innerText = coords;
 }
 
- 

@@ -1,5 +1,6 @@
 package com.javaproject.aaj.weekendwalkers.services;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,17 @@ public class EventService {
 
 	public Event getOne(Long id) {
 		return eventRepository.findById(id).orElse(null);
+	}
+
+//	Show by date range
+
+	public List<Event> getAllByDateRange(Date startDate, Date endDate) {
+		return eventRepository.getAllByDateBetween(startDate, endDate);
+	}
+//	Show by club hosting
+
+	public List<Event> getAllByClubHosting(Long id) {
+		return eventRepository.getAllByHostedBy(id);
 	}
 
 	// ========== Delete ========================
