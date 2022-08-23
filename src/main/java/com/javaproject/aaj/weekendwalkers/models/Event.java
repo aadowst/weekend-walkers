@@ -3,7 +3,6 @@ package com.javaproject.aaj.weekendwalkers.models;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,8 +10,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -64,10 +64,9 @@ public class Event {
 	@JoinColumn(name = "club_id")
 	private Club hostedBy;
 
-	// @ManyToMany(fetch = FetchType.LAZY)
-	// @JoinTable(name = "clubs_events", joinColumns = @JoinColumn(name =
-	// "club_id"), inverseJoinColumns = @JoinColumn(name = "event_id"))
-	// private List<Club> clubs;
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "events_users", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "event_id"))
+	private List<User> attendees;
 
 	protected void whenCreated() {
 		this.date = new Date();
@@ -80,8 +79,8 @@ public class Event {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date updatedAt;
 
-	@OneToMany(mappedBy = "event", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private List<User> attendees;
+//	@OneToMany(mappedBy = "event", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//	private List<User> attendees;
 
 	@PrePersist
 	protected void onCreate() {

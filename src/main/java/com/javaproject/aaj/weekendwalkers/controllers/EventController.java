@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.javaproject.aaj.weekendwalkers.models.Club;
 import com.javaproject.aaj.weekendwalkers.models.Event;
 import com.javaproject.aaj.weekendwalkers.models.User;
 import com.javaproject.aaj.weekendwalkers.services.EventService;
@@ -35,6 +36,8 @@ public class EventController {
 		if (session.getAttribute("user_id") != null) {
 			User user = userService.getOne((Long) session.getAttribute("user_id"));
 			model.addAttribute("user", user);
+			List<Club> joinedClubs = user.getClubs();
+			model.addAttribute("joinedClubs", joinedClubs);
 		}
 		return "create_event.jsp";
 	}
@@ -48,9 +51,17 @@ public class EventController {
 			model.addAttribute("user", user);
 			return "create_event.jsp";
 		}
-		Event newEvent = eventService.save(event);
-		// newEvent.setUsers((List<User>) user);
-		return "redirect:/events/" + newEvent.getId();
+		eventService.save(event);
+//		event.setAttendees(user);
+		List<User> eventAttendees = event.getAttendees();
+		System.out.println("EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEe" + eventAttendees);
+
+		eventAttendees.add(user);
+
+		event.setAttendees(eventAttendees);
+		eventService.save(event);
+
+		return "redirect:/events/" + event.getId();
 	}
 
 //	READ

@@ -17,7 +17,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 //import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
@@ -30,59 +29,71 @@ import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-
 @Entity
-@Table(name="users")
+@Table(name = "users")
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@NotEmpty(message = "Username is required!")
-	@Size(min=3, max=30, message="Username must be between 3 and 30 characters")
+	@Size(min = 3, max = 30, message = "Username must be between 3 and 30 characters")
 	private String userName;
-	
+
 	@NotEmpty(message = "Email is required!")
-	@Email(message="Please enter a valid email!")
+	@Email(message = "Please enter a valid email!")
 	private String email;
-	
+
 	@NotEmpty(message = "Password is required!")
-	@Size(min=8, max=128, message="Password must be between 8 and 128 characters")
+	@Size(min = 8, max = 128, message = "Password must be between 8 and 128 characters")
 	private String password;
-	
+
 	@Transient
 	@NotEmpty(message = "Confirm Password is required!")
-	@Size(min=8, max=128, message="Confirm Password must be between 8 and 128 characters")
+	@Size(min = 8, max = 128, message = "Confirm Password must be between 8 and 128 characters")
 	private String confirm;
-	
+
+	public List<Event> getEventsAttended() {
+		return eventsAttended;
+	}
+
+	public void setEventsAttended(List<Event> eventsAttended) {
+		this.eventsAttended = eventsAttended;
+	}
+
 	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name="clubs_users", joinColumns = @JoinColumn(name="club_id"), inverseJoinColumns= @JoinColumn(name="user_id"))
+	@JoinTable(name = "clubs_users", joinColumns = @JoinColumn(name = "club_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
 	private List<Club> clubs;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="event_id")
-	private Event event;
-	
-	@OneToMany(mappedBy="organizer", cascade= CascadeType.ALL, fetch = FetchType.LAZY)
+
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "events_users", joinColumns = @JoinColumn(name = "event_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
+	private List<Event> eventsAttended;
+
+//	@ManyToOne(fetch = FetchType.LAZY)
+//	@JoinColumn(name="event_id")
+//	private Event event;
+
+	@OneToMany(mappedBy = "organizer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Club> createdClubs;
-	
-	@Column(updatable=false)
-	@DateTimeFormat(pattern="yyyy-MM-dd")
+
+	@Column(updatable = false)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date createdAt;
-	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date updatedAt;
-	  
+
 	@PrePersist
-	protected void onCreate(){
+	protected void onCreate() {
 		this.createdAt = new Date();
 	}
-	    
+
 	@PreUpdate
-	protected void onUpdate(){
+	protected void onUpdate() {
 		this.updatedAt = new Date();
 	}
-	
-	public User() {}
+
+	public User() {
+	}
 
 	public User(String userName, String email, String password, String confirm) {
 		super();
@@ -148,14 +159,6 @@ public class User {
 		this.updatedAt = updatedAt;
 	}
 
-	public Event getEvent() {
-		return event;
-	}
-
-	public void setEvent(Event event) {
-		this.event = event;
-	}
-
 	public List<Club> getClubs() {
 		return clubs;
 	}
@@ -171,11 +174,5 @@ public class User {
 	public void setCreatedClubs(List<Club> createdClubs) {
 		this.createdClubs = createdClubs;
 	}
-	
 
-	
-	
 }
-
-	
-
