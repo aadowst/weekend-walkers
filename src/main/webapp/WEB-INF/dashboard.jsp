@@ -129,20 +129,38 @@
 			</form>
 
 			<h2>Search by club</h2>
-			<form action="" class="col-7 d-flex row-6" >
+			<form action="" class="col-7 d-flex row-6">
 				<select name="club" class="form-select">
 					<c:forEach var="club" items="${clubs}">
 						<option value="${ club.id }" type="number">
 							<c:out value="${club.name }" />
 						</option>
 					</c:forEach>
-				</select>
-				<input type="submit" value="search" class="btn btn-info  mx-2">
+				</select> <input type="submit" value="search" class="btn btn-info  mx-2">
 			</form>
 		</div>
 		<div class="col-6">
 			<h2>All public Walks</h2>
-
+			<table class="table table-hover col-6">
+				<thead>
+					<tr>
+						<th scope="col">Club</th>
+						<th scope="col">Location</th>
+						<th scope="col">Organizer</th>
+						<th scope="col">Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="event" items="${listOfEvents}">
+						<tr>
+							<th scope="row"><a href="/clubs/${club.id}"><c:out
+										value="${event.hostedBy.name}"></c:out></a></th>
+							<td><c:out value="${event.location}"></c:out></td>
+							<td><c:out value="${event.attendees[0].userName}"></c:out></td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
 		</div>
 
 	</div>

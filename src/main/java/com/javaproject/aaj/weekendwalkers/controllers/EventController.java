@@ -1,5 +1,8 @@
 package com.javaproject.aaj.weekendwalkers.controllers;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -71,24 +74,12 @@ public class EventController {
 		}
 		System.out.println("test");
 		User user = userService.getOne((Long) session.getAttribute("user_id"));
-		
-
 		Event event = eventService.getOne(id);
-		System.out.println("User id: " + user.getId());
-		System.out.println("Event id: " + event.getId());
-//		List<Event> userEvent = user.getEventsAttended();
-//		userEvent.add(event);
-//		user.setEventsAttended(userEvent);
 		List <User> rsvps = event.getAttendees();
 		rsvps.add(user);
 		event.setAttendees(rsvps);
 		eventService.save(event);
-//		userService.update(user);
-		
-		
-		
 		return "redirect:/events";
-		
 	}
 
 //	READ
@@ -148,5 +139,30 @@ public class EventController {
 		return "redirect:/events";
 	}
 	
+// SEARCH BY DATE
+	@RequestMapping("/search/dates")
+	public String searchDate(@RequestParam(name="startDate") String startDate, @RequestParam(name="endDate") String endDate, Model model, HttpSession session) throws ParseException {
+		Date newStartDate = new SimpleDateFormat("yyyy-MM-dd").parse(startDate);
+		Date newEndDate =  new SimpleDateFormat("yyyy-MM-dd").parse(endDate);
+		List <Event> eventsByDates = eventService.getAllByDateRange(newStartDate, newEndDate);
+		model.addAttribute("listOfEvents", eventsByDates);
+		User user = userService.getOne((Long) session.getAttribute("user_id"));
+		model.addAttribute("user", user);
+		model.addAttribute("clubs", clubService.allClubs());
+		System.out.println(eventsByDates);
+		return "dashboard.jsp";
+	}
+
+// SEARCH BY CLUB
+//	@RequestMapping("/search/club")
+//	public String searchClub(@RequestParam("club") String club, Model model, HttpSession session) {
+//		
+//		List <Event> eventsByClub = eventService.getAllByClubHosting(clubId);
+//		model.addAttribute("listOfEvents", eventsByClub);
+//		User user = userService.getOne((Long) session.getAttribute("user_id"));
+//		model.addAttribute("user", user);
+//		model.addAttribute("clubs", clubService.allClubs());
+//		return "dashboard.jsp";
+//	}
 	
 }
