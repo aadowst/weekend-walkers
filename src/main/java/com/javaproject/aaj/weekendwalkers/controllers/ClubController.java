@@ -79,15 +79,15 @@ public class ClubController {
 	@PostMapping("/clubs/{id}/accept")
 	
 	public String accept(HttpSession session, @PathVariable("id") Long id, Model model) {
-		User user = userService.getOne((Long) session.getAttribute("user_id"));
+		User user = userServ.getOne((Long) session.getAttribute("user_id"));
 		model.addAttribute("user", user);
 		System.out.println("test");
 		
-		Club club = clubService.getOne(id);
+		Club club = clubServ.findClub(id);
 		List <User> clubs = club.getUsers();
 		clubs.add(user);
 //		club.setAttendees(rsvps);
-		clubService.update(club);
+		clubServ.update(club);
 		return "redirect:/clubs";
 	}
 	

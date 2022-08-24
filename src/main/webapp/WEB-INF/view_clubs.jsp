@@ -107,7 +107,7 @@
 		<!-- Container wrapper -->
 	</nav>
 	<!-- Navbar -->
-	<h1>
+	<h1 class="header">
 		Hello,
 		<c:out value="${user.userName}"></c:out>
 	</h1>
