@@ -76,6 +76,21 @@ public class ClubController {
 		return "one_club.jsp";
 	}
 	
+	@PostMapping("/clubs/{id}/accept")
+	
+	public String accept(HttpSession session, @PathVariable("id") Long id, Model model) {
+		User user = userService.getOne((Long) session.getAttribute("user_id"));
+		model.addAttribute("user", user);
+		System.out.println("test");
+		
+		Club club = clubService.getOne(id);
+		List <User> clubs = club.getUsers();
+		clubs.add(user);
+//		club.setAttendees(rsvps);
+		clubService.update(club);
+		return "redirect:/clubs";
+	}
+	
 	@GetMapping("/clubs/{id}/edit")
 	public String editClub(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("club", clubServ.findClub(id));
