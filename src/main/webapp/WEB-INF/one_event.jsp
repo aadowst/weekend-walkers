@@ -4,7 +4,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ page isErrorPage="true"%>
-pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ page isErrorPage="true"%>
@@ -31,14 +30,11 @@ pageEncoding="ISO-8859-1"%>
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
 	crossorigin="anonymous"></script>
-<title><c:out value="${event.name }"></c:out></title>
-<title>Create an Event</title>
+<title>shows event</title>
+
 </head>
 
 <body>
-	<h1>
-		<c:out value="${event.name }"></c:out>
-	</h1>
 	<!-- Navbar -->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<!-- Container wrapper -->
@@ -135,15 +131,20 @@ pageEncoding="ISO-8859-1"%>
 		Hey,
 		<c:out value="${user.userName }" />
 	</h1>
-	<h1 class="d-flex justify-content-end">hhsh</h1>
-	<%-- <div class="form-group d-flex justify-content-between my-2">
-    <form:label path="rsvp" class="w-25">Open to Public? </form:label>
-    <form:checkbox path="rsvp" class="w-75" value="true" /> --%> </row>
+	<form action="/events/rsvp/${event.id}" method="post" class="d-flex justify-content-end">
+		<h1 class="my-1">RSVP:</h1>
+		<input type="checkbox" name = "rsvp" style="width:25px;" class="custom-control custom-checkbox checkbox-lg m-2"/>
+		<button class="header info my-3">Submit</button>
+	</form> 
+	<%-- <a href="/rsvp/${event.id}"><button style="width:25px; height:50px;"></button></a> --%>
+	
+
+	</row>
 
 
 	<!-- JavaScript Bundle with Popper -->
 
-	<c:out value="${event.attendees }"></c:out>
+	<%-- <c:out value="${event.attendees}"></c:out> --%>
 
 	<div class="container">
 
@@ -186,8 +187,7 @@ pageEncoding="ISO-8859-1"%>
 						<li class="list-group-item"><c:if
 								test="${event.openToPublic == true}">
 								<h3>Open to Public: Yes</h3>
-							</c:if>
-							<c:if test="${event.openToPublic == false}">
+							</c:if> <c:if test="${event.openToPublic == false}">
 								<h3>Open to Public: No</h3>
 							</c:if></li>
 					</h3>

@@ -66,7 +66,7 @@ public class User {
 	private List<Club> clubs;
 
 	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "events_users", joinColumns = @JoinColumn(name = "event_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
+	@JoinTable(name = "rsvps", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "event_id"))
 	private List<Event> eventsAttended;
 
 //	@ManyToOne(fetch = FetchType.LAZY)

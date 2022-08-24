@@ -59,13 +59,16 @@ public class Event {
 
 	@NotNull
 	private boolean openToPublic;
+	
+	@NotNull
+	private boolean rsvp;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "club_id")
 	private Club hostedBy;
 
 	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "events_users", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "event_id"))
+	@JoinTable(name = "rsvps", joinColumns = @JoinColumn(name = "event_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
 	private List<User> attendees;
 
 	protected void whenCreated() {
@@ -173,5 +176,13 @@ public class Event {
 
 	public void setAttendees(List<User> attendees) {
 		this.attendees = attendees;
+	}
+
+	public boolean getRsvp() {
+		return rsvp;
+	}
+
+	public void setRsvp(boolean rsvp) {
+		this.rsvp = rsvp;
 	}
 }

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.javaproject.aaj.weekendwalkers.models.Club;
 import com.javaproject.aaj.weekendwalkers.models.Event;
@@ -63,14 +64,30 @@ public class EventController {
 	}
 	
 	@PostMapping("/rsvp/{id}")
-	public String rsvp(HttpSession session, @PathVariable("id") Long id) {
+	public String rsvp(HttpSession session, @PathVariable("id") Long id, @RequestParam(value="rsvp", required = false) Boolean rsvp) {
+		//check to see if user clicked the checkbox
+		if (rsvp == null) {
+			return "redirect:/events/" + id;
+		}
+		System.out.println("test");
 		User user = userService.getOne((Long) session.getAttribute("user_id"));
-		Event event = eventService.getOne(id);
-		List<Event> userEvent = user.getEventsAttended();
-		userEvent.add(event);
-		userService.update(user);
 		
-		return "redirect:/events/" + id;
+
+		Event event = eventService.getOne(id);
+		System.out.println("User id: " + user.getId());
+		System.out.println("Event id: " + event.getId());
+//		List<Event> userEvent = user.getEventsAttended();
+//		userEvent.add(event);
+//		user.setEventsAttended(userEvent);
+		List <User> rsvps = event.getAttendees();
+		rsvps.add(user);
+		event.setAttendees(rsvps);
+		eventService.save(event);
+//		userService.update(user);
+		
+		
+		
+		return "redirect:/events";
 		
 	}
 
