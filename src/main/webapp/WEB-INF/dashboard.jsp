@@ -155,12 +155,14 @@
 				<tbody>
 					<c:forEach var="event" items="${listOfEvents}">
 						<tr>
-							<th scope="row"><c:out value="${event.hostedBy.name}"></c:out></th>
+							<th scope="row"><a href="/clubs/${event.hostedBy.id}"><c:out
+										value="${event.hostedBy.name}"></c:out></a></th>
 							<td><fmt:formatDate value="${event.date}" pattern="MMMM dd, yyyy"></fmt:formatDate></td>
 							<td><c:out value="${event.location}"></c:out></td>
 							<td><c:out value="${event.attendees[0].userName}"></c:out></td>
 							<td>
 								<a href="/events/${event.id}">view</a>
+								| <a href="/events/${event.id}/attendees">RSVP LIST</a>
 								<c:if test="${user.id == event.attendees[0].id}">
 									| <a href="/events/${event.id}/edit">edit</a> |
 									<a href="/events/${event.id}/delete">delete</a>

@@ -47,7 +47,7 @@ public class UserController {
 	
 	
 	@PostMapping("/register")
-	public String register(@Valid @ModelAttribute("newUser")User user, BindingResult result, Model model, HttpSession session) {
+	public String register(@Valid @ModelAttribute("user")User user, BindingResult result, Model model, HttpSession session) {
 		User newUser = uServ.register(user, result);
 		
 		if(result.hasErrors()) {
@@ -61,7 +61,7 @@ public class UserController {
 	}
 	
 	@PostMapping("/login")
-	public String login(@Valid @ModelAttribute("newLogin")LoginUser loginUser, BindingResult result, Model model, HttpSession session) {
+	public String login(@Valid @ModelAttribute("loginUser")LoginUser loginUser, BindingResult result, Model model, HttpSession session) {
 		User newUser = uServ.login(loginUser, result);
 		
 		if(result.hasErrors()) {
