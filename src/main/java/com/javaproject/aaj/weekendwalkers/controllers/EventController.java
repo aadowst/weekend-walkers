@@ -61,6 +61,18 @@ public class EventController {
 		userService.update(user);
 		return "redirect:/events/" + event.getId();
 	}
+	
+	@PostMapping("/rsvp/{id}")
+	public String rsvp(HttpSession session, @PathVariable("id") Long id) {
+		User user = userService.getOne((Long) session.getAttribute("user_id"));
+		Event event = eventService.getOne(id);
+		List<Event> userEvent = user.getEventsAttended();
+		userEvent.add(event);
+		userService.update(user);
+		
+		return "redirect:/events/" + id;
+		
+	}
 
 //	READ
 
@@ -118,4 +130,6 @@ public class EventController {
 		eventService.delete(id);
 		return "redirect:/events";
 	}
+	
+	
 }
