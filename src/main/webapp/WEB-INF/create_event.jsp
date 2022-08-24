@@ -11,6 +11,7 @@
           <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
             integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
           <link rel="stylesheet" type="text/css" href="/css/style.css">
+          <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
           <title>Create an Event</title>
         </head>
 
@@ -123,9 +124,16 @@
             </div>
 
             <div class="content d-flex justify-content-around align-items-center">
-              <div class="content-left col-4 mx-5" id="googleMap" style="height:400px;">INSERT GOOGLE MAPS</div>
+              <div class="content-left col-4 mx-5" >
+                <div id="googleMap" style="height:400px;"></div>
+              <h4>Enter a Start Location (and/or click on the map to move the marker)</h4>
+              <form id="location-form">
+                <input type="text" class="form-control" id="location-input" value="${user.clubs[0].location}">
+                <button class="btn btn-primary" type="submit">Enter</button>
+              </form>
+              </div>
               <div class="content-right form col-8">
-                The coordinates are:  <span id="latLng"></span>
+                <!-- The coordinates are:  <span id="latLng"></span> -->
                 <form:form action="/events/create" method="post" modelAttribute="event">
                   
                   <form:select path="hostedBy" type="number">
@@ -173,6 +181,8 @@
                     <form:textarea path="description" class="w-75" />
                   </div>
                   <form:errors class="text-danger" path="description" />
+
+                  
                   <div class="form-group d-flex my-4">
                     <a href="/events"><button class="btn btn-warning">Cancel</button></a>
                     <input type="submit" value="Submit" class="btn btn-info  mx-2">
@@ -185,22 +195,11 @@
 
           </div>
 
-          <!-- <script>
-  function myMap() {
-  var mapProp= {
-    center:new google.maps.LatLng(51.508742,-0.120850),
-    zoom:5,
-  };
-  
-  var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
-
-  } -->
 
           <script src="/js/script.js"></script>
           </script>
           <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA246nlIjYYGu89FdDHR5g0NiJbIyr9L3k&callback=initMap"></script>
-
 
           <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
             integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
