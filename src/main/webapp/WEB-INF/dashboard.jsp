@@ -1,72 +1,67 @@
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ page isErrorPage="true" %>
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ page isErrorPage="true"%>
 <!DOCTYPE html>
 <html>
 <head>
 <!-- CSS only -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
+	crossorigin="anonymous">
+<link href="assets/plugins/global/plugins.bundle.css" rel="stylesheet"
+	type="text/css" />
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 <link rel="stylesheet" type="text/css" href="/css/style.css">
 
 
 <title>Book Share</title>
 </head>
 <body>
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <!-- Container wrapper -->
-  <div class="container-fluid">
-    <!-- Toggle button -->
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-mdb-toggle="collapse"
-      data-mdb-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <i class="fas fa-bars"></i>
-    </button>
+	<!-- Navbar -->
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<!-- Container wrapper -->
+		<div class="container-fluid">
+			<!-- Toggle button -->
+			<button class="navbar-toggler" type="button"
+				data-mdb-toggle="collapse" data-mdb-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<i class="fas fa-bars"></i>
+			</button>
 
-    <!-- Collapsible wrapper -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <!-- Navbar brand -->
-      <a class="navbar-brand mt-2 mt-lg-0" href="#">
-        <img
-          src="/images/WWLogo.png"
-          height="85"
-          alt=""
-          loading="" 
-          id= "logo"
-          class = "rounded-circle"
-        />
-      </a>
-      <!-- Left links -->
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link" href="/events">Dashboard</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/events/new">Post an Event</a>
-        </li>
-      </ul>
-      <!-- Left links -->
-    </div>
-    <!-- Collapsible wrapper -->
+			<!-- Collapsible wrapper -->
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<!-- Navbar brand -->
+				<a class="navbar-brand mt-2 mt-lg-0" href="#"> <img
+					src="/images/WWLogo.png" height="85" alt="" loading="" id="logo"
+					class="rounded-circle" />
+				</a>
+				<!-- Left links -->
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<li class="nav-item"><a class="nav-link" href="/events">Dashboard</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="/events/new">Post
+							an Event</a></li>
+				</ul>
+				<!-- Left links -->
+			</div>
+			<!-- Collapsible wrapper -->
 
-    <!-- Right elements -->
-    <div class="d-flex align-items-center">
-      <!-- Icon -->
-      <a class="text-reset me-3" href="#">
-        <i class="fas fa-shopping-cart"></i>
-      </a>
+			<!-- Right elements -->
+			<div class="d-flex align-items-center">
+				<!-- Icon -->
+				<a class="text-reset me-3" href="#"> <i
+					class="fas fa-shopping-cart"></i>
+				</a>
 
-      <!-- Notifications -->
-<!--       <div class="dropdown">
+				<!-- Notifications -->
+				<!--       <div class="dropdown">
         <a
           class="text-reset me-3 dropdown-toggle hidden-arrow"
           href="#"
@@ -93,37 +88,83 @@
           </li>
         </ul>
       </div> -->
-      
-<!-- right drop down menu -->
- <div class="btn-group m-2 my-menu">
-  <button type="button" class="btn btn-info dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="nav-btn">
-    Menu
-  </button>
-  <div class="dropdown-menu">
-    <a class="dropdown-item" href="/events">View all Events</a>
-    <a class="dropdown-item" href="/clubs">View all Clubs</a>
-    <a class="dropdown-item" href="/clubs/new">Create a Club</a>
-    <a class="dropdown-item" href="/events/new">Create an Event</a>
-    <div class="dropdown-divider"></div>
-    <a class="dropdown-item" href="/logout">LogOut</a>
-  </div>
-</div>
 
-<a class="btn btn-secondary" href="/logout" role="button">LogOut</a>
-<a class="btn btn-secondary m-2" href="/login" role="button" id = "login_btn"> LogIn/Register</a>
+				<!-- right drop down menu -->
+				<div class="btn-group m-2 my-menu">
+					<button type="button" class="btn btn-info dropdown-toggle"
+						data-bs-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false" id="nav-btn">Menu</button>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="/events">View all Events</a> <a
+							class="dropdown-item" href="/clubs">View all Clubs</a> <a
+							class="dropdown-item" href="/clubs/new">Create a Club</a> <a
+							class="dropdown-item" href="/events/new">Create an Event</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="/logout">LogOut</a>
+					</div>
+				</div>
 
-    </div>
-    <!-- Right elements -->
-  </div>
-  <!-- Container wrapper -->
-</nav>
-<!-- Navbar -->
-<h1 class="test">hey</h1>
+				<a class="btn btn-secondary" href="/logout" role="button">LogOut</a>
+				<a class="btn btn-secondary m-2" href="/login" role="button"
+					id="login_btn"> LogIn/Register</a>
 
-<!-- JavaScript Bundle with Popper -->
+			</div>
+			<!-- Right elements -->
+		</div>
+		<!-- Container wrapper -->
+	</nav>
+	<!-- Navbar -->
+	<div class="container d-flex">
+		<div class="col-6">
+			<h1 class="header">
+				Hello,
+				<c:out value="${user.userName}"></c:out>
+			</h1>
+			<br>
+			<h2>Search by Date</h2>
+			<form action="" class="row-6">
+				<input path="start" type="date" /> - <input path="end" type="date" />
+				<input type="submit" value="search" class="btn btn-info  my-2">
 
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
+			</form>
+
+			<h2>Search by club</h2>
+			<form action="" class="col-7 d-flex row-6" >
+				<select name="club" class="form-select">
+					<c:forEach var="club" items="${clubs}">
+						<option value="${ club.id }" type="number">
+							<c:out value="${club.name }" />
+						</option>
+					</c:forEach>
+				</select>
+				<input type="submit" value="search" class="btn btn-info  mx-2">
+			</form>
+		</div>
+		<div class="col-6">
+			<h2>All public Walks</h2>
+
+		</div>
+
+	</div>
+
+
+	<!-- JavaScript Bundle with Popper -->
+	<script src="/js/script.js"></script>
+	<script type="text/javascript"
+		src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+	<script type="text/javascript"
+		src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+	<script type="text/javascript"
+		src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+	<script src="assets/plugins/global/plugins.bundle.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+		integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"
+		integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK"
+		crossorigin="anonymous"></script>
 </body>
 
 </html>

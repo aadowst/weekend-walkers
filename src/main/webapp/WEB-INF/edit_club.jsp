@@ -117,6 +117,7 @@
 		<div class="col-4 m-auto">
 			<h1 class="header">Update a Club</h1>
 			<form:form action="/clubs/${club.id}/edit" method="post" modelAttribute="club">
+			<input type = "hidden" name ="_method" value = "put"/>
 
 				<div class="form-group">
 					<form:label path="name">Name:  </form:label>
@@ -133,6 +134,7 @@
 					<input type="submit" value="+ Update Club" class="btn btn-info">
 					</div>
 			</form:form>
+			<br>
 			<a href="/clubs/${club.id}/delete"><input type="submit" value="Delete" class="btn btn-danger"></a>
 		</div>
 	</div>

@@ -16,6 +16,6 @@
 <body>
 <h1><c:out value="${event.name }"></c:out></h1>
 
-<c:out value="${event.attendees }"></c:out>
+<c:out value="${event.attendees.userName }"></c:out>
 </body>
 </html>

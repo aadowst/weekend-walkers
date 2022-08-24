@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.javaproject.aaj.weekendwalkers.models.Club;
 import com.javaproject.aaj.weekendwalkers.models.Event;
 import com.javaproject.aaj.weekendwalkers.models.User;
+import com.javaproject.aaj.weekendwalkers.services.ClubService;
 import com.javaproject.aaj.weekendwalkers.services.EventService;
 import com.javaproject.aaj.weekendwalkers.services.UserService;
 
@@ -29,6 +30,8 @@ public class EventController {
 	private EventService eventService;
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private ClubService clubService;
 
 //	CREATE
 	@GetMapping("/new")
@@ -69,6 +72,7 @@ public class EventController {
 		}
 		List<Event> listOfEvents = eventService.getAll();
 		model.addAttribute("listOfEvents", listOfEvents);
+		model.addAttribute("clubs", clubService.allClubs());
 		return "dashboard.jsp";
 	}
 
