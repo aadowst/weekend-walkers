@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.javaproject.aaj.weekendwalkers.models.Club;
 import com.javaproject.aaj.weekendwalkers.models.Event;
 import com.javaproject.aaj.weekendwalkers.repos.EventRepository;
 
@@ -37,8 +38,8 @@ public class EventService {
 	}
 //	Show by club hosting
 
-	public List<Event> getAllByClubHosting(Long id) {
-		return eventRepository.getAllByHostedBy(id);
+	public List<Event> getAllByClubHosting(Club club) {
+		return eventRepository.getAllByHostedBy(club);
 	}
 
 	// ========== Delete ========================

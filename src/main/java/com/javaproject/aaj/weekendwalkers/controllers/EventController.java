@@ -168,7 +168,8 @@ public class EventController {
 // SEARCH BY CLUB
 	@RequestMapping("/search/club")
 	public String searchClub(@RequestParam(name="club") Long id, Model model, HttpSession session) {
-		List <Event> eventsByClub = eventService.getAllByClubHosting(id);
+		System.out.println(id);
+		List <Event> eventsByClub = eventService.getAllByClubHosting(clubService.findClub(id));
 		model.addAttribute("listOfEvents", eventsByClub);
 		User user = userService.getOne((Long) session.getAttribute("user_id"));
 		model.addAttribute("user", user);
