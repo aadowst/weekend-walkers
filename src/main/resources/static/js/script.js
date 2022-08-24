@@ -1,9 +1,8 @@
 function initMap() {
-//   let location = { lat: 51.508742, lng: -0.12085 };
-  let location = document.getElementById()
+  let location = { lat: 39.0119, lng: -98.4842 };
   var map = google.maps.Map;
   map = new google.maps.Map(document.getElementById("googleMap"), {
-    zoom: 12,
+    zoom: 3,
     center: location,
   });
   var marker = new google.maps.Marker({
@@ -14,14 +13,14 @@ function initMap() {
   google.maps.event.addListener(map, "click", function (event) {
     changeLocation(event.latLng);
   });
-
+geocode();
 }
 
 function changeLocation(coords) {
     console.log(coords);
 
   map = new google.maps.Map(document.getElementById("googleMap"), {
-    zoom: 14,
+    zoom: 11,
     center: coords,
   });
   var marker = new google.maps.Marker({
@@ -34,24 +33,32 @@ function changeLocation(coords) {
 }
 
 var locationForm = document.getElementById('location-form');
-locationForm.addEventListener('submit', geocode);
+locationForm.addEventListener('submit', geocodeEvent);
 
-function geocode(e){
+function geocodeEvent(e){
     e.preventDefault();
-    var location = document.getElementById('location-input').value;
-    axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
-        params:{
-            address: location,
-            key: 'AIzaSyA246nlIjYYGu89FdDHR5g0NiJbIyr9L3k'
-        }
-    })
-    .then(function(response){
-        console.log(response);
-        changeLocation(response.data.results[0].geometry.location);
-
-    })
-    .catch(function(error){
-        console.log(error);
-    });
+    geocode();
     }
 
+    function geocode(){
+        var map = google.maps.Map;
+        var location = document.getElementById('location-input').value;
+        axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
+            params:{
+                address: location,
+                key: 'AIzaSyA246nlIjYYGu89FdDHR5g0NiJbIyr9L3k'
+            }
+        })
+        .then(function(response){
+            console.log(response);
+            changeLocation(response.data.results[0].geometry.location);
+    
+        })
+        .catch(function(error){
+            console.log(error);
+        });
+    
+        google.maps.event.addListener(map, "click", function (event) {
+            changeLocation(event.latLng);
+          });
+        }
