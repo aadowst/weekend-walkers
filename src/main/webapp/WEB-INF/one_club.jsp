@@ -22,6 +22,97 @@
 <title>Book Share</title>
 </head>
 <body>
+<!-- Navbar -->
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<!-- Container wrapper -->
+		<div class="container-fluid">
+			<!-- Toggle button -->
+			<button class="navbar-toggler" type="button"
+				data-mdb-toggle="collapse" data-mdb-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<i class="fas fa-bars"></i>
+			</button>
+
+			<!-- Collapsible wrapper -->
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<!-- Navbar brand -->
+				<a class="navbar-brand mt-2 mt-lg-0" href="#"> <img
+					src="/images/WWLogo.png" height="85" alt="" loading="" id="logo"
+					class="rounded-circle" />
+				</a>
+				<!-- Left links -->
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<li class="nav-item"><a class="nav-link" href="/events">Dashboard</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="/events/new">Post
+							an Event</a></li>
+				</ul>
+				<!-- Left links -->
+			</div>
+			<!-- Collapsible wrapper -->
+
+			<!-- Right elements -->
+			<div class="d-flex align-items-center">
+				<!-- Icon -->
+				<a class="text-reset me-3" href="#"> <i
+					class="fas fa-shopping-cart"></i>
+				</a>
+
+				<!-- Notifications -->
+				<!--       <div class="dropdown">
+        <a
+          class="text-reset me-3 dropdown-toggle hidden-arrow"
+          href="#"
+          id="navbarDropdownMenuLink"
+          role="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          <i class="fas fa-bell"></i>
+          <span class="badge rounded-pill badge-notification bg-danger">1</span>
+        </a>
+        <ul
+          class="dropdown-menu dropdown-menu-end"
+          aria-labelledby="navbarDropdownMenuLink"
+        >
+          <li>
+            <a class="dropdown-item" href="#">Some news</a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="#">Another news</a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </li>
+        </ul>
+      </div> -->
+
+				<!-- right drop down menu -->
+				<div class="btn-group m-2 my-menu">
+					<button type="button" class="btn btn-info dropdown-toggle"
+						data-bs-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false" id="nav-btn">Menu</button>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="/events">View all Events</a> <a
+							class="dropdown-item" href="/clubs">View all Clubs</a> <a
+							class="dropdown-item" href="/clubs/new">Create a Club</a> <a
+							class="dropdown-item" href="/events/new">Create an Event</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="/logout">LogOut</a>
+					</div>
+				</div>
+
+				<a class="btn btn-secondary" href="/logout" role="button">LogOut</a>
+				<a class="btn btn-secondary m-2" href="/" role="button"
+					id="login_btn"> LogIn/Register</a>
+
+			</div>
+			<!-- Right elements -->
+		</div>
+		<!-- Container wrapper -->
+	</nav>
+	<!-- Navbar -->
 
 	<h1>
 		Hello,
