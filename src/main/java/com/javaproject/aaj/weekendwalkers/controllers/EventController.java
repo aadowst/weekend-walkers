@@ -67,13 +67,15 @@ public class EventController {
 	}
 	
 	@PostMapping("/rsvp/{id}")
-	public String rsvp(HttpSession session, @PathVariable("id") Long id, @RequestParam(value="rsvp", required = false) Boolean rsvp) {
+	public String rsvp(HttpSession session, @PathVariable("id") Long id, @RequestParam(value="rsvp", required = false) Boolean rsvp, Model model) {
 		//check to see if user clicked the checkbox
 		if (rsvp == null) {
 			return "redirect:/events/" + id;
 		}
-		System.out.println("test");
 		User user = userService.getOne((Long) session.getAttribute("user_id"));
+		model.addAttribute("user", user);
+		System.out.println("test");
+		
 		Event event = eventService.getOne(id);
 		List <User> rsvps = event.getAttendees();
 		rsvps.add(user);

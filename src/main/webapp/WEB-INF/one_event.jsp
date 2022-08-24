@@ -8,6 +8,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ page isErrorPage="true"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 
@@ -18,18 +19,11 @@
 	rel="stylesheet"
 	integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
 	crossorigin="anonymous">
-<!-- CSS only -->
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
-	crossorigin="anonymous">
+<link href="assets/plugins/global/plugins.bundle.css" rel="stylesheet"
+	type="text/css" />
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 <link rel="stylesheet" type="text/css" href="/css/style.css">
-<!-- JavaScript Bundle with Popper -->
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
-	crossorigin="anonymous"></script>
 <title>shows event</title>
 
 </head>
@@ -131,11 +125,16 @@
 		Hey,
 		<c:out value="${user.userName }" />
 	</h1>
+	<c:if test="${not fn:contains(attendees, ${user.id)}}">
 	<form action="/events/rsvp/${event.id}" method="post" class="d-flex justify-content-end">
 		<h1 class="my-1">RSVP:</h1>
+		
+								
+							
 		<input type="checkbox" name = "rsvp" style="width:25px;" class="custom-control custom-checkbox checkbox-lg m-2"/>
 		<button class="header info my-3">Submit</button>
 	</form> 
+	</c:if>
 	<%-- <a href="/rsvp/${event.id}"><button style="width:25px; height:50px;"></button></a> --%>
 	
 
