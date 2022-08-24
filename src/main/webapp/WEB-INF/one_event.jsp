@@ -121,7 +121,7 @@
 	</nav>
 	<!-- Navbar -->
 	<row class="d-flex justify-content-between mx-4">
-	<h1 class="d-flex justify-content-start">
+	<h1 class="d-flex justify-content-start header">
 		Hey,
 		<c:out value="${user.userName }" />
 	</h1>
