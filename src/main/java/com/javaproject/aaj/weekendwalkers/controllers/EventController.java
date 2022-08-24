@@ -151,20 +151,18 @@ public class EventController {
 		User user = userService.getOne((Long) session.getAttribute("user_id"));
 		model.addAttribute("user", user);
 		model.addAttribute("clubs", clubService.allClubs());
-		System.out.println(eventsByDates);
 		return "dashboard.jsp";
 	}
 
 // SEARCH BY CLUB
-//	@RequestMapping("/search/club")
-//	public String searchClub(@RequestParam("club") String club, Model model, HttpSession session) {
-//		
-//		List <Event> eventsByClub = eventService.getAllByClubHosting(clubId);
-//		model.addAttribute("listOfEvents", eventsByClub);
-//		User user = userService.getOne((Long) session.getAttribute("user_id"));
-//		model.addAttribute("user", user);
-//		model.addAttribute("clubs", clubService.allClubs());
-//		return "dashboard.jsp";
-//	}
+	@RequestMapping("/search/club")
+	public String searchClub(@RequestParam(name="club") Long id, Model model, HttpSession session) {
+		List <Event> eventsByClub = eventService.getAllByClubHosting(id);
+		model.addAttribute("listOfEvents", eventsByClub);
+		User user = userService.getOne((Long) session.getAttribute("user_id"));
+		model.addAttribute("user", user);
+		model.addAttribute("clubs", clubService.allClubs());
+		return "dashboard.jsp";
+	}
 	
 }
