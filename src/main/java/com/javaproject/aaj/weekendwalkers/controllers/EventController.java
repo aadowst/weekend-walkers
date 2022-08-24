@@ -108,6 +108,17 @@ public class EventController {
 
 		return "one_event.jsp";
 	}
+	
+	@GetMapping("/{id}/attendees")
+	public String showAttendees(@PathVariable("id") Long id, Model model, HttpSession session) {
+		User user = userService.getOne((Long) session.getAttribute("user_id"));
+		model.addAttribute("user", user);
+		Event event = eventService.getOne(id);
+		model.addAttribute("event", event);
+		List <User> rsvps = event.getAttendees();
+		model.addAttribute("rsvps", rsvps);
+		return "event_attendees.jsp";
+	}
 
 //	UPDATE
 
