@@ -4,6 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ page isErrorPage="true"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -122,17 +123,17 @@
 			</h1>
 			<br>
 			<h2>Search by Date</h2>
-			<form action="" class="row-6">
-				<input path="start" type="date" /> - <input path="end" type="date" />
+			<form action="/events/search/dates" class="row-6">
+				<input name="startDate" type="date" /> - <input name="endDate" type="date" />
 				<input type="submit" value="search" class="btn btn-info  my-2">
 
 			</form>
 
 			<h2>Search by club</h2>
-			<form action="" class="col-7 d-flex row-6">
+			<form action="/events/search/club" class="col-7 d-flex row-6">
 				<select name="club" class="form-select">
 					<c:forEach var="club" items="${clubs}">
-						<option value="${ club.id }" type="number">
+						<option value="${ club.id }">
 							<c:out value="${club.name }" />
 						</option>
 					</c:forEach>
@@ -145,6 +146,7 @@
 				<thead>
 					<tr>
 						<th scope="col">Club</th>
+						<th scope="col">Date</th>
 						<th scope="col">Location</th>
 						<th scope="col">Organizer</th>
 						<th scope="col">Actions</th>
@@ -155,8 +157,16 @@
 						<tr>
 							<th scope="row"><a href="/clubs/${club.id}"><c:out
 										value="${event.hostedBy.name}"></c:out></a></th>
+							<td><fmt:formatDate value="${event.date}" pattern="MMMM dd, yyyy"></fmt:formatDate></td>
 							<td><c:out value="${event.location}"></c:out></td>
 							<td><c:out value="${event.attendees[0].userName}"></c:out></td>
+							<td>
+								<a href="/events/${event.id}">view</a>
+								<c:if test="${user.id == event.attendees[0].id}">
+									| <a href="/events/${event.id}/edit">edit</a> |
+									<a href="/events/${event.id}/delete">delete</a>
+								</c:if>
+							</td>
 						</tr>
 					</c:forEach>
 				</tbody>
