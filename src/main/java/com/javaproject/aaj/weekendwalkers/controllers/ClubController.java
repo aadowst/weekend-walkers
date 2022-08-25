@@ -1,7 +1,5 @@
 package com.javaproject.aaj.weekendwalkers.controllers;
 
-
-
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -24,17 +22,17 @@ import com.javaproject.aaj.weekendwalkers.services.UserService;
 
 @Controller
 public class ClubController {
-	
+
 	@Autowired
 	private ClubService clubServ;
-	
+
 	@Autowired
 	private UserService userServ;
-	
-	//create
+
+	// create
 	@PostMapping("/clubs/new")
 	public String createClub(@Valid @ModelAttribute("club") Club club, BindingResult result, HttpSession session) {
-		if(result.hasErrors()) {
+		if (result.hasErrors()) {
 			return "create_club.jsp";
 		}
 		Long id = (Long) session.getAttribute("user_id");
@@ -46,19 +44,19 @@ public class ClubController {
 		user.setClubs(userClub);
 		userServ.update(user);
 		System.out.println(result);
-	
+
 		return "redirect:/clubs";
 	}
-	
-	//Read
+
+	// Read
 	@GetMapping("/clubs/new")
 	public String newclub(@ModelAttribute("club") Club club, Model model, HttpSession session) {
 		Long id = (Long) session.getAttribute("user_id");
 		User user = userServ.getOne(id);
 		model.addAttribute("user", user);
-		return "create_club.jsp";		
+		return "create_club.jsp";
 	}
-	
+
 	@GetMapping("/clubs")
 	public String showClubs(Model model, HttpSession session) {
 		User user = userServ.getOne((Long) session.getAttribute("user_id"));
@@ -66,7 +64,7 @@ public class ClubController {
 		model.addAttribute("user", user);
 		return "view_clubs.jsp";
 	}
-	
+
 	@GetMapping("/clubs/{id}")
 
 	public String oneClub(@PathVariable("id") Long id, Model model, HttpSession session) {
@@ -75,45 +73,61 @@ public class ClubController {
 		model.addAttribute("user", user);
 		return "one_club.jsp";
 	}
-	
+
 	@PostMapping("/clubs/{id}/accept")
-	
+
 	public String accept(HttpSession session, @PathVariable("id") Long id, Model model) {
 		User user = userServ.getOne((Long) session.getAttribute("user_id"));
 		model.addAttribute("user", user);
 		System.out.println("test");
-		
+
 		Club club = clubServ.findClub(id);
-		List <User> clubs = club.getUsers();
+		List<User> clubs = club.getUsers();
 		clubs.add(user);
 //		club.setAttendees(rsvps);
 		clubServ.update(club);
 		return "redirect:/clubs";
 	}
-	
+
 	@GetMapping("/clubs/{id}/edit")
-	public String editClub(@PathVariable("id") Long id, Model model) {
-		model.addAttribute("club", clubServ.findClub(id));
+	public String editClub(@PathVariable("id") Long id, Model model, HttpSession session) {
+		Club club = clubServ.findClub(id);
+		User user = userServ.getOne((Long) session.getAttribute("user_id"));
+		if (user.getId() != club.getOrganizer().getId()) {
+			return "redirect:/clubs/" + id;
+		}
+		model.addAttribute("club", club);
 		return "edit_club.jsp";
 	}
-	
-	//Edit
+
+	// Edit
 	@PutMapping("/clubs/{id}/edit")
-	public String updateClub(@PathVariable("id") Long id, @Valid  @ModelAttribute("club") Club club, BindingResult result, HttpSession session) {
-		if(result.hasErrors()) {
-			return "edit_club.jsp";
-		}else {
-			clubServ.update(club);
-			return "redirect:/events";
+	public String updateClub(@PathVariable("id") Long id, @Valid @ModelAttribute("club") Club club,
+			BindingResult result, HttpSession session) {
+		Club oneClub = clubServ.findClub(id);
+		User user = userServ.getOne((Long) session.getAttribute("user_id"));
+		if (user.getId() != oneClub.getOrganizer().getId()) {
+			return "redirect:/clubs/" + id;
 		}
-		
+		if (result.hasErrors()) {
+			return "edit_club.jsp";
+		} else {
+			clubServ.update(club);
+		}
+		return "redirect:/events";
+
 	}
-	
-	//Delete
+
+	// Delete
 	@GetMapping("/clubs/{id}/delete")
-	public String deleteClub(@PathVariable("id") Long id) {
+	public String deleteClub(@PathVariable("id") Long id, HttpSession session) {
+		Club club = clubServ.findClub(id);
+		User user = userServ.getOne((Long) session.getAttribute("user_id"));
+		if (user.getId() != club.getOrganizer().getId()) {
+			return "redirect:/clubs/" + id;
+		}
 		clubServ.delete(id);
 		return "redirect:/events";
 	}
-	
+
 }
