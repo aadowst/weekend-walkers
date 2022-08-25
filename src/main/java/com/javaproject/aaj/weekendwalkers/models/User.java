@@ -179,4 +179,13 @@ public class User {
 		this.createdClubs = createdClubs;
 	}
 
+	public List<Club> getClubsRequestTo() {
+		return clubsRequestTo;
+	}
+
+	public void setClubsRequestTo(List<Club> clubsRequestTo) {
+		this.clubsRequestTo = clubsRequestTo;
+	}
+	
+
 }

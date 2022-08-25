@@ -152,4 +152,12 @@ public class Club {
 		this.accepted = accepted;
 	}
 
+	public List<User> getUserRequest() {
+		return userRequest;
+	}
+
+	public void setUserRequest(List<User> userRequest) {
+		this.userRequest = userRequest;
+	}
+
 }

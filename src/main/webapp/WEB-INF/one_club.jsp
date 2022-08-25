@@ -117,39 +117,39 @@
 		Hello,
 		<c:out value="${user.userName}"></c:out>
 	</h1>
-	
-		<div class="header text-center">
-			<h1 class="header ">
-				<c:out value="${club.name}"></c:out>
-			</h1>
-		</div>
+
+	<div class="header text-center">
+		<h1 class="header ">
+			<c:out value="${club.name}"></c:out>
+		</h1>
+	</div>
 
 	<div class="container content d-flex justify-content-around my-3">
-		
-			<div class="table-responsive col-md-6 content d-flex">
-				<table class="table">
-					<thead class="thead-light">
-						<tr>
-							<th scope="col" class="text-center">Information</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<th scope="row">Established date: <fmt:formatDate
-									value="${club.createdAt}" pattern="MMMM dd, yyyy"></fmt:formatDate></th>
-						</tr>
-						<tr>
-							<th scope="row">Location: <c:out value="${club.location}"></c:out>
-							</th>
-						</tr>
-						<tr>
-							<th scope="row">Organizer: <c:out
-									value="${club.organizer.userName}"></c:out></th>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="table-responsive col-md-6 mx-4">
+
+		<div class="table-responsive col-md-6 content d-flex">
+			<table class="table">
+				<thead class="thead-light">
+					<tr>
+						<th scope="col" class="text-center">Information</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th scope="row">Established date: <fmt:formatDate
+								value="${club.createdAt}" pattern="MMMM dd, yyyy"></fmt:formatDate></th>
+					</tr>
+					<tr>
+						<th scope="row">Location: <c:out value="${club.location}"></c:out>
+						</th>
+					</tr>
+					<tr>
+						<th scope="row">Organizer: <c:out
+								value="${club.organizer.userName}"></c:out></th>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="table-responsive col-md-6 mx-4">
 			<table class="table table-hover">
 				<thead>
 					<tr>
@@ -172,7 +172,8 @@
 			</table>
 		</div>
 	</div>
-	<table class="table table-hover row mx-5">
+	<c:if test="${user.id == club.users[0].id}">
+		<table class="table table-hover row mx-5">
 			<thead>
 				<tr>
 					<th scope="col">New Request</th>
@@ -180,20 +181,31 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="club" items="${clubs}">
+
+				<c:forEach var="requestingUser" items="${club.userRequest}">
+
 					<tr>
-						<th scope="row">bowen</th>
-						<td>Approve or Deny</td>
+						<td>UserName: <c:out value="${requestingUser.userName}"></c:out></td>
+						<td>
+							<a class="btn btn-primary" href="/clubs/${club.id}/${requestingUser.id}/accept">Accept</a>
+							<a class="btn btn-primary" href="/clubs/${club.id}/${requestingUser.id}/deny">Deny</a>
+						</td>
 					</tr>
 				</c:forEach>
+
 			</tbody>
 
 		</table>
-	<div class="mx-5">
-	<a class="btn btn-primary" href="/clubs/${id}/edit" role="button">Edit
-		Club</a>
-	<a class="btn btn-primary" href="/clubs/${id}/delete" role="button">Delete
-		Club</a>
+		<div class="mx-5">
+			<a class="btn btn-primary" href="/clubs/${club.id}/edit"
+				role="button">Edit Club</a> <a class="btn btn-primary"
+				href="/clubs/${club.id}/delete" role="button">Delete Club</a>
+	</c:if>
+			<c:if test="${user.id != club.users[0].id}">
+				<form action="/club/${club.id}/request" method="post">
+					<button class="btn btn-primary">Request To Join</button>
+				</form>
+			</c:if>
 	</div>
 
 	<script
