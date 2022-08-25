@@ -120,9 +120,10 @@
 
                     <div class="container">
 
-                        <div class="d-flex justify-content-between align-items-center">
-                            <h5 class="mx-2">Edit Your Event!</h5>
-                            <a href="/events"><button class="btn btn-warning">Cancel</button></a>
+                        <div class="d-flex align-items-center">
+                            <h5 >Edit Your Event!</h5>
+                            <a href="/events"><button class="btn btn-warning mx-2">Cancel Changes</button></a>
+                            <a href="/events/${event.id}/delete"><button class="btn btn-danger">Delete Event</button></a>
                         </div>
 
                         <div class="content d-flex justify-content-around align-items-center">
