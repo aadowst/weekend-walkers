@@ -21,7 +21,7 @@
 <link rel="stylesheet" type="text/css" href="/css/style.css">
 
 
-<title>Book Share</title>
+<title>Weekend Walkers Dashboard</title>
 </head>
 <body>
 	<!-- Navbar -->
@@ -158,7 +158,7 @@
 							<th scope="row"><a href="/clubs/${event.hostedBy.id}"><c:out
 										value="${event.hostedBy.name}"></c:out></a></th>
 							<td><fmt:formatDate value="${event.date}" pattern="MMMM dd, yyyy"></fmt:formatDate></td>
-							<td><c:out value="${event.location}"></c:out></td>
+							<td><c:out value="${event.name}"></c:out></td>
 							<td><c:out value="${event.attendees[0].userName}"></c:out></td>
 							<td>
 								<a href="/events/${event.id}">view</a>
