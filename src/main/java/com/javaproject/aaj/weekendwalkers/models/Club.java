@@ -51,6 +51,10 @@ public class Club {
 	@JoinTable(name = "clubs_users", joinColumns = @JoinColumn(name = "club_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
 	private List<User> users;
 
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "request", joinColumns = @JoinColumn(name = "club_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
+	private List<User> userRequest;
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "organizer_id")
 	private User organizer;
