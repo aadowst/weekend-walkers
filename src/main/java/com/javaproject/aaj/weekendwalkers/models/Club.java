@@ -37,6 +37,9 @@ public class Club {
 	@NotNull
 	@Size(min = 1)
 	private String location;
+	
+	@NotNull
+	private boolean accepted;
 
 	@Column(updatable = false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -45,7 +48,7 @@ public class Club {
 	private Date updatedAt;
 
 	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "clubs_users", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "club_id"))
+	@JoinTable(name = "clubs_users", joinColumns = @JoinColumn(name = "club_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
 	private List<User> users;
 
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -135,6 +138,14 @@ public class Club {
 
 	public void setOrganizer(User organizer) {
 		this.organizer = organizer;
+	}
+
+	public boolean getAccepted() {
+		return accepted;
+	}
+
+	public void setAccepted(boolean accepted) {
+		this.accepted = accepted;
 	}
 
 }
