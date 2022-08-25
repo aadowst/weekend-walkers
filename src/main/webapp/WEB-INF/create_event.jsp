@@ -118,25 +118,28 @@
 
             <div class="d-flex justify-content-between align-items-center">
               <h5>Create an Event!</h5>
-              <h6 class="float-right">
-                <a href="/events">Back to the Events</a>
-              </h6>
+
             </div>
 
             <div class="content d-flex justify-content-around align-items-center">
               <div class="content-left col-4 mx-5" >
                 <div id="googleMap" style="height:400px;"></div>
-              <h4>Enter a Start Location (and/or click on the map to move the marker)</h4>
-              <form id="location-form">
-                <input type="text" class="form-control" id="location-input" value="${user.clubs[0].location}">
-                <button class="btn btn-primary" type="submit">Enter</button>
-              </form>
+
               </div>
               <div class="content-right form col-8">
-                <!-- The coordinates are:  <span id="latLng"></span> -->
+
+                <h6>Enter a Start Location (and/or click on the map to move the marker)</h6>
+                <form id="location-form" class="d-flex my-2">
+                  <input type="text" class="form-control mx-2" id="location-input" value="${user.clubs[0].location}">
+                  <button class="btn btn-primary" type="submit">Enter</button>
+                </form>
+
                 <form:form action="/events/create" method="post" modelAttribute="event">
-                  
-                  <form:select path="hostedBy" type="number">
+                	<form:input type="hidden" path="latLng" id="latLng" value=""></form:input>
+					
+                  <div class="form-group d-flex justify-content-between my-2">
+                  <form:label path="hostedBy" class="w-25">Hosted by: </form:label>
+                  <form:select path="hostedBy" type="number" class="w-75">
                     <c:forEach var="club" items="${joinedClubs }">
                       <form:option value="${ club.id }" type="number">
                         <c:out value="${club.name }" />
@@ -144,7 +147,7 @@
                     </c:forEach>
                     <form:errors path="hostedBy" class="text-danger" />
                   </form:select>
-
+                  </div>
                   <div class="form-group d-flex justify-content-between my-2">
                     <form:label path="name" class="w-25">Title </form:label>
                     <form:input type="text" path="name" class="w-75" />

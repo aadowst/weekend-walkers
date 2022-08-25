@@ -59,9 +59,12 @@ public class Event {
 
 	@NotNull
 	private boolean openToPublic;
-	
+
 	@NotNull
 	private boolean rsvp;
+
+	@NotNull
+	private String latLng;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "club_id")
@@ -81,9 +84,6 @@ public class Event {
 	private Date createdAt;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date updatedAt;
-
-//	@OneToMany(mappedBy = "event", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//	private List<User> attendees;
 
 	@PrePersist
 	protected void onCreate() {
@@ -184,5 +184,13 @@ public class Event {
 
 	public void setRsvp(boolean rsvp) {
 		this.rsvp = rsvp;
+	}
+
+	public String getLatLng() {
+		return latLng;
+	}
+
+	public void setLatLng(String latLng) {
+		this.latLng = latLng;
 	}
 }

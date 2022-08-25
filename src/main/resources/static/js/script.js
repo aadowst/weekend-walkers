@@ -52,13 +52,15 @@ function geocodeEvent(e){
         .then(function(response){
             console.log(response);
             changeLocation(response.data.results[0].geometry.location);
+            document.getElementById("latLng").value = response.data.results[0].geometry.location.lat + "," + response.data.results[0].geometry.location.lng
+
     
         })
         .catch(function(error){
             console.log(error);
         });
-    
         google.maps.event.addListener(map, "click", function (event) {
             changeLocation(event.latLng);
           });
         }
+
