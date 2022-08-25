@@ -116,9 +116,9 @@
 
           <div class="container">
 
-            <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center">
               <h5>Create an Event!</h5>
-
+              <a href="/events"><button class="btn btn-warning mx-2">Cancel</button></a>
             </div>
 
             <div class="content d-flex justify-content-around align-items-center">
@@ -149,7 +149,7 @@
                   </form:select>
                   </div>
                   <div class="form-group d-flex justify-content-between my-2">
-                    <form:label path="name" class="w-25">Title </form:label>
+                    <form:label path="name" class="w-25">Event Name </form:label>
                     <form:input type="text" path="name" class="w-75" />
                   </div>
                   <form:errors class="text-danger" path="name" />
@@ -187,7 +187,7 @@
 
                   
                   <div class="form-group d-flex my-4">
-                    <a href="/events"><button class="btn btn-warning">Cancel</button></a>
+
                     <input type="submit" value="Submit" class="btn btn-info  mx-2">
                   </div>
                 </form:form>

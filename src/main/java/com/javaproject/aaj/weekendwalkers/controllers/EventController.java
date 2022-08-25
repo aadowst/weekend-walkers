@@ -136,10 +136,11 @@ public class EventController {
 	@PostMapping("/{id}/update")
 	public String updateEvent(@PathVariable("id") Long id, HttpSession session, Model model,
 			@Valid @ModelAttribute("event") Event event, BindingResult result) {
+				System.out.println("dddddddddddddddddddddddddddddddd");
 		if (result.hasErrors()) {
 			User user = userService.getOne((Long) session.getAttribute("user_id"));
 			model.addAttribute("user", user);
-			return "create_event.jsp";
+			return "edit_event.jsp";
 		}
 		Event editedEvent = eventService.save(event);
 		return "redirect:/events/" + editedEvent.getId();
