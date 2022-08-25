@@ -74,20 +74,7 @@ public class ClubController {
 		model.addAttribute("user", user);
 		return "one_club.jsp";
 	}
-<<<<<<< Updated upstream
 
-	@PostMapping("/clubs/{id}/accept")
-
-	public String accept(HttpSession session, @PathVariable("id") Long id, Model model) {
-		User user = userServ.getOne((Long) session.getAttribute("user_id"));
-		model.addAttribute("user", user);
-		System.out.println("test");
-
-		Club club = clubServ.findClub(id);
-		List<User> clubs = club.getUsers();
-		clubs.add(user);
-//		club.setAttendees(rsvps);
-=======
 	
 	@PostMapping("/club/{id}/request")
 	public String request(HttpSession session, @PathVariable("id") Long id) {
@@ -98,7 +85,7 @@ public class ClubController {
 		List <User> clubs_request = club.getUserRequest();
 		clubs_request.add(user);
 		club.setUserRequest(clubs_request);
->>>>>>> Stashed changes
+
 		clubServ.update(club);
 		
 		return "redirect:/clubs/" + id;
