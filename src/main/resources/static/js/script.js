@@ -17,8 +17,9 @@ geocode();
 }
 
 function changeLocation(coords) {
-    console.log(coords);
-
+    console.log(coords.lat, coords.lng);
+    // document.getElementById("latLng").value = coords.lat + "," + coords.lng;
+    document.getElementById("latLng").value = coords.toUrlValue();
   map = new google.maps.Map(document.getElementById("googleMap"), {
     zoom: 11,
     center: coords,

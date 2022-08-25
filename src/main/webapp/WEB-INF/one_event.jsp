@@ -19,11 +19,11 @@
 	rel="stylesheet"
 	integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
 	crossorigin="anonymous">
-<link href="assets/plugins/global/plugins.bundle.css" rel="stylesheet"
-	type="text/css" />
+
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 <link rel="stylesheet" type="text/css" href="/css/style.css">
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <title>shows event</title>
 
 </head>
@@ -190,7 +190,7 @@
 								<h3>Open to Public: No</h3>
 							</c:if></li>
 					</h3>
-
+					<input type="hidden" class="form-control mx-2" id="location-input" value="${event.latLng}">
 				</ul>
 
 			</div>
@@ -209,10 +209,10 @@
 
   } -->
 
-	<script src="/js/script.js"></script>
+	<script src="/js/viewEventScript.js"></script> 	
 	</script>
 	<script async defer
-		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA246nlIjYYGu89FdDHR5g0NiJbIyr9L3k&callback=initMap"></script>
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA246nlIjYYGu89FdDHR5g0NiJbIyr9L3k&callback=geocode"></script>
 
 
 	<script
