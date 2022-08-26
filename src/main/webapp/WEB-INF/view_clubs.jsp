@@ -13,7 +13,7 @@
 	integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
 	crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="/css/style.css">
-<title>Book Share</title>
+<title>View All Clubs</title>
 </head>
 <body>
 	<!-- Navbar -->

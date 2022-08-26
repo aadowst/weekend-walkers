@@ -24,7 +24,7 @@
 	href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 <link rel="stylesheet" type="text/css" href="/css/style.css">
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<title>shows event</title>
+<title>View Event</title>
 
 </head>
 
@@ -127,10 +127,17 @@
 	</h1>
 	<div class="d-flex align-items-center">
 
-		<c:out value="${event.attendees[0].userName}"/>
+		<c:set var="isRsvped" value="false"/>
+		<c:forEach var="attendee" items="${event.attendees}">
+			<c:if test="${attendee.id == user.id}"> <c:set var="isRsvped" value="true"/></c:if>
+<%-- 			attendee ID is <c:out value="${attendee.id}"></c:out> --%>
+		</c:forEach>
 
-		<c:if test="${user.id.equals(event.hostedBy.organizer.id)}"><a href="/events/${event.id}/edit"><button class="btn btn-warning mx-4">Edit Event</button></a></c:if>
-	<%-- <c:if test="${not fn:contains(event.attendees, ${user.id)}}"> --%>
+
+
+		<c:if test="${user.id.equals(event.hostedBy.organizer.id)}">
+			<a href="/events/${event.id}/edit"><button class="btn btn-warning mx-4">Edit Event</button></a></c:if>
+	<c:if test="${isRsvped == 'false'}">
 	<form action="/events/rsvp/${event.id}" method="post" class="d-flex justify-content-end">
 		<h1 class="mx-2 mt-2">RSVP:</h1>
 		
@@ -139,7 +146,8 @@
 		<input type="checkbox" name = "rsvp" style="width:25px;" class="custom-control custom-checkbox checkbox-lg mx-2"/>
 		<button class="info my-3 btn btn-info">Submit</button>
 	</form> 
-	<%-- </c:if> --%>
+	</c:if>
+
 	<%-- <a href="/rsvp/${event.id}"><button style="width:25px; height:50px;"></button></a> --%>
 	
 </div>

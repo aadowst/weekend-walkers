@@ -18,7 +18,7 @@
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 <link rel="stylesheet" type="text/css" href="/css/style.css">
-<title>One club</title>
+<title>View Club</title>
 </head>
 <body>
 	<!-- Navbar -->
