@@ -127,9 +127,10 @@
 	</h1>
 	<div class="d-flex align-items-center">
 
+		<c:out value="${event.attendees[0].userName}"/>
 
 		<c:if test="${user.id.equals(event.hostedBy.organizer.id)}"><a href="/events/${event.id}/edit"><button class="btn btn-warning mx-4">Edit Event</button></a></c:if>
-	<%-- <c:if test="${not fn:contains(attendees, ${user.id)}}"> --%>
+	<%-- <c:if test="${not fn:contains(event.attendees, ${user.id)}}"> --%>
 	<form action="/events/rsvp/${event.id}" method="post" class="d-flex justify-content-end">
 		<h1 class="mx-2 mt-2">RSVP:</h1>
 		

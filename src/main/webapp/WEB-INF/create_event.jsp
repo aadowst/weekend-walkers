@@ -135,7 +135,7 @@
                 </form>
 
                 <form:form action="/events/create" method="post" modelAttribute="event">
-                	<form:input type="hidden" path="latLng" id="latLng" value=""></form:input>
+                	<form:input type="hidden" path="latLng" id="latLng" value="${user.clubs[0].location}"></form:input>
 					
                   <div class="form-group d-flex justify-content-between my-2">
                   <form:label path="hostedBy" class="w-25">Hosted by: </form:label>

@@ -11,13 +11,14 @@ function initMap() {
   });
 
   google.maps.event.addListener(map, "click", function (event) {
+
     changeLocation(event.latLng);
   });
 geocode();
 }
 
 function changeLocation(coords) {
-    console.log(coords.lat, coords.lng);
+
     map = new google.maps.Map(document.getElementById("googleMap"), {
       zoom: 11,
       center: coords,
@@ -27,6 +28,7 @@ function changeLocation(coords) {
       map: map,
     });
     google.maps.event.addListener(map, "click", function (event) {
+
       changeLocation(event.latLng);
     });
     document.getElementById("latLng").value = coords.toUrlValue();
@@ -50,9 +52,9 @@ function geocodeEvent(e){
             }
         })
         .then(function(response){
-            console.log(response);
+            console.log(response.data.results[0].geometry.location);
+            document.getElementById("latLng").value = response.data.results[0].geometry.location.lat + "," + response.data.results[0].geometry.location.lng;
             changeLocation(response.data.results[0].geometry.location);
-            document.getElementById("latLng").value = response.data.results[0].geometry.location.lat + "," + response.data.results[0].geometry.location.lng
 
     
         })
