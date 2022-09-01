@@ -36,7 +36,7 @@
 			<!-- Collapsible wrapper -->
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<!-- Navbar brand -->
-				<a class="navbar-brand mt-2 mt-lg-0" href="#"> <img
+				<a class="navbar-brand mt-2 mt-lg-0" href="/events"> <img
 					src="/images/WWLogo.png" height="85" alt="" loading="" id="logo"
 					class="rounded-circle" />
 				</a>
@@ -116,7 +116,7 @@
 			Hello,
 			<c:out value="${user.userName}"></c:out>
 		</h1>
-		<h2><c:out value="${event.name}"></c:out>'s Walk</h2>
+		<h2 class="header text-center"><c:out value="${event.name}"></c:out>'s Walk</h2>
 			<table class="table table-hover col-6">
 				<thead>
 					<tr>

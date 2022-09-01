@@ -30,7 +30,7 @@
               <!-- Collapsible wrapper -->
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Navbar brand -->
-                <a class="navbar-brand mt-2 mt-lg-0" href="#">
+                <a class="navbar-brand mt-2 mt-lg-0" href="/events">
                   <img src="/images/WWLogo.png" height="85" alt="" loading="" id="logo" class="rounded-circle" />
                 </a>
                 <!-- Left links -->
@@ -84,6 +84,7 @@
 
                 <!-- right drop down menu -->
                 <div class="btn-group m-2 my-menu">
+                
                   <button type="button" class="btn btn-info dropdown-toggle" data-bs-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false" id="nav-btn">
                     Menu
@@ -97,29 +98,27 @@
                     <a class="dropdown-item" href="/logout">LogOut</a>
                   </div>
                 </div>
-
+				
                 <a class="btn btn-secondary" href="/logout" role="button">LogOut</a>
                 <a class="btn btn-secondary m-2" href="/" role="button" id="login_btn"> LogIn/Register</a>
-
+				<a href="/events"><button class="btn btn-warning ">Cancel</button></a>
               </div>
               <!-- Right elements -->
             </div>
             <!-- Container wrapper -->
           </nav>
           <!-- Navbar -->
-          <h1 class="test">hey,
+          <h1 class="header test mx-4">hey, 
             <c:out value="${user.userName }" />
           </h1>
+          <h1 class="header text-center my-2">Create An Event!</h1>
 
           <!-- JavaScript Bundle with Popper -->
 
 
-          <div class="container">
+          <div class="container my-2">
 
-            <div class="d-flex align-items-center">
-              <h5>Create an Event!</h5>
-              <a href="/events"><button class="btn btn-warning mx-2">Cancel</button></a>
-            </div>
+
 
             <div class="content d-flex justify-content-around align-items-center">
               <div class="content-left col-4 mx-5" >
@@ -189,8 +188,10 @@
                   <div class="form-group d-flex my-4">
 
                     <input type="submit" value="Submit" class="btn btn-info  mx-2">
+          
                   </div>
                 </form:form>
+                
 
               </div>
             </div>

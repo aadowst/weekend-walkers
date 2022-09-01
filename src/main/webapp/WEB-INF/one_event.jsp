@@ -44,7 +44,7 @@
 			<!-- Collapsible wrapper -->
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<!-- Navbar brand -->
-				<a class="navbar-brand mt-2 mt-lg-0" href="#"> <img
+				<a class="navbar-brand mt-2 mt-lg-0" href="/events"> <img
 					src="/images/WWLogo.png" height="85" alt="" loading="" id="logo"
 					class="rounded-circle" />
 				</a>
@@ -139,7 +139,7 @@
 			<a href="/events/${event.id}/edit"><button class="btn btn-warning mx-4">Edit Event</button></a></c:if>
 	<c:if test="${isRsvped == 'false'}">
 	<form action="/events/rsvp/${event.id}" method="post" class="d-flex justify-content-end">
-		<h1 class="mx-2 mt-2">RSVP:</h1>
+		<h1 class="header mx-2 mt-2">RSVP:</h1>
 		
 								
 							
