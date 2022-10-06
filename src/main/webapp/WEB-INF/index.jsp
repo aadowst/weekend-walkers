@@ -23,7 +23,9 @@
 		<div style=" height:175px; width: 1100px;
     justify-content: center;
     align-items: center;
-    background-color:white;">
+    background-color:white;
+    margin-left:60px;
+    ">
 
 			<h1 class="header text-center my-3 opacity-100">Welcome To Weekend Walkers</h1>
 			<h2 style="margin-top:15px;" class="text-center">Create, Join, and RSVP for Club's and Events! Get Moving With Your Friend's, and Stay Active Together! Sign Up Today!</h2>
@@ -31,7 +33,8 @@
 
 		</div>
 <div class="content opacity-100" style=" height:250px; width: 1100px; margin-top:100px;
-    background-color:white;">
+    background-color:white;
+        margin-left:60px;">
 
 
 		<div class="main col-12 d-flex justify-content-between m-3 my-1" >
