@@ -125,7 +125,7 @@
                 <div id="googleMap" style="height:400px;"></div>
 
               </div>
-              <div class="content-right form col-8">
+              <div class="content-right form col-8" style="margin-top:40px;">
 
                 <h6>Enter a Start Location (and/or click on the map to move the marker)</h6>
                 <form id="location-form" class="d-flex my-2">
