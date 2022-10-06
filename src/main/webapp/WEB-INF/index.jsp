@@ -17,45 +17,50 @@
 <meta charset="ISO-8859-1">
 <title>Weekend Walkers</title>
 </head>
-<body>
-	<div class="container">
-		<div class="d-flex my-2">
+<body style="background-image: url('/images/WWLogo.png'); background-repeat: no-repeat; background-size: cover; background-position: center center; height: 100vh;">
+	<div class="container opacity-75" >
+	
+		<div style=" height:175px; width: 1100px;
+    justify-content: center;
+    align-items: center;
+    background-color:white;">
 
-			<h2>Welcome Weekend Walkers</h2>
-
-
+			<h1 class="header text-center my-3 opacity-100">Welcome To Weekend Walkers</h1>
+			<h2 style="margin-top:15px;" class="text-center">Create, Join, and RSVP for Club's and Events! Get Moving With Your Friend's, and Stay Active Together! Sign Up Today!</h2>
+			
 
 		</div>
-<div class="content d-flex">
+<div class="content opacity-100" style=" height:250px; width: 1100px; margin-top:100px;
+    background-color:white;">
 
 
-		<div class="main d-flex col-9 justify-content-between">
-			<div class="register col-4">
-				<h4>New Walker</h4>
+		<div class="main col-12 d-flex justify-content-between m-3 my-1" >
+			<div class="register col-4" style="">
+				<h4 >New Walker</h4>
 				<form:form action="/register" method="post" modelAttribute="user">
 
 					<div class="form-group d-flex justify-content-between my-2">
 						<form:label path="userName">User Name:  </form:label>
-						<form:input type="text" path="userName" />
+						<form:input type="text" path="userName" class="form-control-sm"/>
 						<form:errors class="text-danger" path="userName" />
 					</div>
 
 					<div class="form-group d-flex justify-content-between my-2">
 						<form:label path="email">Email:  </form:label>
-						<form:input type="text" path="email" />
+						<form:input type="text" path="email" class="form-control-sm"/>
 						<form:errors class="text-danger" path="email" />
 					</div>
 
 					<div class="form-group d-flex justify-content-between my-2">
 						<form:label path="password">Password: </form:label>
-						<form:input type="password" path="password" />
+						<form:input type="password" path="password" class="form-control-sm"/>
 						<form:errors class="text-danger" path="password" />
 					</div>
 
 
 					<div class="form-group d-flex justify-content-between my-2">
 						<form:label path="confirm">Confirm PW: </form:label>
-						<form:input type="password" path="confirm" />
+						<form:input type="password" path="confirm" class="form-control-sm"/>
 						<form:errors class="text-danger" path="confirm" />
 					</div>
 					<div>
@@ -64,22 +69,22 @@
 				</form:form>
 			</div>
 
-			<div class="login col-4">
+			<div class="login col-4 " style="margin-right: 20px">
 				<h4>Login</h4>
 				<form:form action="/login" method="post" modelAttribute="loginUser">
 					<div class="form-group d-flex justify-content-between my-2">
 						<form:label path="email">Email:  </form:label>
-						<form:input type="text" path="email" />
+						<form:input type="text" path="email" class="form-control-sm" />
 					</div>
 					<form:errors class="text-danger" path="email" />
 	
 					<div class="form-group d-flex justify-content-between my-2">
 						<form:label path="password">Password: </form:label>
-						<form:input type="password" path="password" />
+						<form:input type="password" path="password" class="form-control-sm"/>
 					</div>
 					<form:errors class="text-danger" path="password" />
 					<div>
-						<input type="submit" value="Login" class="btn btn-success">
+						<input type="submit" value="Login" class="btn btn-info">
 					</div>
 	
 				</form:form>

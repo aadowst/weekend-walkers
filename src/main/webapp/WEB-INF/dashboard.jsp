@@ -155,7 +155,7 @@
 				<tbody>
 					<c:forEach var="event" items="${listOfEvents}">
 						<tr>
-							<th scope="row"><a href="/clubs/${event.hostedBy.id}"><c:out
+							<th scope="row"><a href="/clubs/${event.hostedBy.id}" class="btn btn-info"><c:out
 										value="${event.hostedBy.name}"></c:out></a></th>
 							<td><fmt:formatDate value="${event.date}" pattern="MMMM dd, yyyy"></fmt:formatDate></td>
 							<td><c:out value="${event.name}"></c:out></td>

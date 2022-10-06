@@ -203,7 +203,7 @@
 	</c:if>
 			<c:if test="${user.id != club.users[0].id}">
 				<form action="/club/${club.id}/request" method="post">
-					<button class="btn btn-primary">Request To Join</button>
+					<button class="btn btn-info" style="margin-left:60px;">Request To Join</button>
 				</form>
 			</c:if>
 	</div>
