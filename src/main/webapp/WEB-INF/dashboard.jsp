@@ -117,7 +117,7 @@
 	<!-- Navbar -->
 	<div class="container d-flex">
 		<div class="col-6">
-			<h1 class="header">
+			<h1 style="margin-top: 5px;" class="header">
 				Hello,
 				<c:out value="${user.userName}"></c:out>
 			</h1>
@@ -137,11 +137,11 @@
 							<c:out value="${club.name }" />
 						</option>
 					</c:forEach>
-				</select> <input type="submit" value="search" class="btn btn-info  mx-2">
+				</select> <input type="submit" value="search" class="btn btn-info  mx-1">
 			</form>
 		</div>
 		<div class="col-6">
-			<h2>All public Walks</h2>
+			<h2 style="margin-top: 80px;" class="header">All public Walks</h2>
 			<table class="table table-hover col-6">
 				<thead>
 					<tr>
