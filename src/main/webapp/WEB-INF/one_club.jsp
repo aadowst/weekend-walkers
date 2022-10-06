@@ -119,7 +119,7 @@
 	</h1>
 
 	<div class="header text-center">
-		<h1 class="header ">
+		<h1 class="header ">Club: 
 			<c:out value="${club.name}"></c:out>
 		</h1>
 	</div>

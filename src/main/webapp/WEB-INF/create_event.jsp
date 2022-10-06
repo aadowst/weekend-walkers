@@ -108,7 +108,7 @@
             <!-- Container wrapper -->
           </nav>
           <!-- Navbar -->
-          <h1 class="header test mx-4">hey, 
+          <h1 class="header test mx-4" style = "margin-top:10px;">Hello, 
             <c:out value="${user.userName }" />
           </h1>
           <h1 class="header text-center my-2">Create An Event!</h1>
@@ -138,7 +138,7 @@
 					
                   <div class="form-group d-flex justify-content-between my-2">
                   <form:label path="hostedBy" class="w-25">Hosted by: </form:label>
-                  <form:select path="hostedBy" type="number" class="w-75">
+                  <form:select path="hostedBy" type="number" class="w-75 form-control">
                     <c:forEach var="club" items="${joinedClubs }">
                       <form:option value="${ club.id }" type="number">
                         <c:out value="${club.name }" />
@@ -149,19 +149,19 @@
                   </div>
                   <div class="form-group d-flex justify-content-between my-2">
                     <form:label path="name" class="w-25">Event Name </form:label>
-                    <form:input type="text" path="name" class="w-75" />
+                    <form:input type="text" path="name" class="w-75 form-control" />
                   </div>
                   <form:errors class="text-danger" path="name" />
 
                   <div class="form-group d-flex justify-content-between my-2">
                     <form:label path="date" class="w-25">Date </form:label>
-                    <form:input type="date" path="date" class="w-75" />
+                    <form:input type="date" path="date" class="w-75 form-control" />
                   </div>
                   <form:errors class="text-danger" path="date" />
 
                   <div class="form-group d-flex justify-content-between my-2">
                     <form:label path="time" class="w-25">Time </form:label>
-                    <form:input type="time" path="time" class="w-75" />
+                    <form:input type="time" path="time" class="w-75 form-control" />
                   </div>
                   <form:errors class="text-danger" path="time" />
 
@@ -174,20 +174,20 @@
 
                   <div class="form-group d-flex justify-content-between my-2">
                     <form:label path="location" class="w-25">Location </form:label>
-                    <form:input type="text" path="location" class="w-75" />
+                    <form:input type="text" path="location" class="w-75 form-control" />
                   </div>
                   <form:errors class="text-danger" path="location" />
 
                   <div class="form-group d-flex justify-content-between my-2">
                     <form:label path="description" class="w-25">Description </form:label>
-                    <form:textarea path="description" class="w-75" />
+                    <form:textarea path="description" class="w-75 form-control" />
                   </div>
                   <form:errors class="text-danger" path="description" />
 
                   
                   <div class="form-group d-flex my-4">
 
-                    <input type="submit" value="Submit" class="btn btn-info  mx-2">
+                    <input type="submit" value="Submit" class="btn btn-info" style="margin-bottom:20px;">
           
                   </div>
                 </form:form>

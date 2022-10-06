@@ -121,8 +121,8 @@
 	</nav>
 	<!-- Navbar -->
 	<row class="d-flex justify-content-between mx-4">
-	<h1 class="d-flex justify-content-start header">
-		Hey,
+	<h1 class="d-flex justify-content-start header" style="margin:10px;">
+		Hello,
 		<c:out value="${user.userName }" />
 	</h1>
 	<div class="d-flex align-items-center">

@@ -111,7 +111,7 @@
                         <!-- Container wrapper -->
                     </nav>
                     <!-- Navbar -->
-                    <h1 class="test">hey,
+                    <h1 class="header" style="margin: 10px;">Hello, 
                         <c:out value="${user.userName }" />
                     </h1>
 
@@ -145,7 +145,7 @@
 
                                     <div class="form-group d-flex justify-content-between my-2">
                                         <form:label path="hostedBy" class="w-25">Hosted by: </form:label>
-                                        <form:input type="text" path="hostedBy" value="${club.id}"></form:input>
+                                        <form:input type="text" path="hostedBy" value="${club.id}" class="w-75 form-control"></form:input>
                                         <!-- <form:select path="hostedBy" type="number" class="w-75">
                                             <c:forEach var="club" items="${joinedClubs }">
                                                 <form:option value="${ club.id }" type="number">
@@ -157,19 +157,19 @@
                                     </div>
                                     <div class="form-group d-flex justify-content-between my-2">
                                         <form:label path="name" class="w-25">Title </form:label>
-                                        <form:input type="text" path="name" class="w-75" value="${event.name}" />
+                                        <form:input type="text" path="name" class="w-75 form-control" value="${event.name}" />
                                     </div>
                                     <form:errors class="text-danger" path="name" />
 
                                     <div class="form-group d-flex justify-content-between my-2">
                                         <form:label path="date" class="w-25">Date </form:label>
-                                        <form:input type="text" path="date" class="w-75" value="${event.date}" />
+                                        <form:input type="date" path="date" class="w-75 form-control" value="${event.date}" />
                                     </div>
                                     <form:errors class="text-danger" path="date" />
 
                                     <div class="form-group d-flex justify-content-between my-2">
                                         <form:label path="time" class="w-25">Time </form:label>
-                                        <form:input type="text" path="time" class="w-75" value="${event.time}" />
+                                        <form:input type="time" path="time" class="w-75 form-control" value="${event.time}" />
                                     </div>
                                     <form:errors class="text-danger" path="time" />
 
@@ -182,14 +182,14 @@
 
                                     <div class="form-group d-flex justify-content-between my-2">
                                         <form:label path="location" class="w-25">Location </form:label>
-                                        <form:input type="text" path="location" class="w-75"
+                                        <form:input type="text" path="location" class="w-75 form-control"
                                             value="${event.location}" />
                                     </div>
                                     <form:errors class="text-danger" path="location" />
 
                                     <div class="form-group d-flex justify-content-between my-2">
                                         <form:label path="description" class="w-25">Description </form:label>
-                                        <form:textarea path="description" class="w-75" value="${event.description}" />
+                                        <form:textarea path="description" class="w-75 form-control" value="${event.description}" />
                                     </div>
                                     <form:errors class="text-danger" path="description" />
 
