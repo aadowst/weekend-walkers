@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,9 +20,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.javaproject.aaj.weekendwalkers.models.Club;
+import com.javaproject.aaj.weekendwalkers.models.Comment;
 import com.javaproject.aaj.weekendwalkers.models.Event;
 import com.javaproject.aaj.weekendwalkers.models.User;
 import com.javaproject.aaj.weekendwalkers.services.ClubService;
+import com.javaproject.aaj.weekendwalkers.services.CommentService;
 import com.javaproject.aaj.weekendwalkers.services.EventService;
 import com.javaproject.aaj.weekendwalkers.services.UserService;
 
@@ -36,6 +37,9 @@ public class EventController {
 	private UserService userService;
 	@Autowired
 	private ClubService clubService;
+	@Autowired
+	private CommentService commentService;
+	
 
 //	CREATE
 	@GetMapping("/new")
@@ -47,6 +51,42 @@ public class EventController {
 			model.addAttribute("joinedClubs", joinedClubs);
 		}
 		return "create_event.jsp";
+	}
+	//create comment
+	
+	@PostMapping("/{id}/comment")
+	public String createComment(@Valid @ModelAttribute("comment") Comment comment,@PathVariable("id") Long id, Model model, HttpSession session, BindingResult result) {
+		Event event = eventService.getOne(id);
+		System.out.println(result.hasErrors());
+		if (result.hasErrors()) {
+			User user = userService.getOne((Long) session.getAttribute("user_id"));
+			model.addAttribute("user", user);
+			
+		
+			return "redirect: /events/" +id ;
+		}
+		
+		User user = userService.getOne((Long) session.getAttribute("user_id"));
+		model.addAttribute("user", user);
+
+//		Event event = eventService.getOne(id);
+		comment.setUser(user);
+		comment.setEvent(event);
+		List<Comment> allEventComments = event.getCommentOnEvent();
+		allEventComments.add(comment);
+		commentService.save(comment);
+		
+		
+//		List <User> comments = event.getUserCommentOnEvent();
+//		comments.add(user);
+//		event.setUserCommentOnEvent(comments);
+//		eventService.save(event);
+//		model.addAttribute("event", event);
+		
+		return "redirect:/events/" +id;
+		
+		
+		
 	}
 
 	@PostMapping("/create")
@@ -99,12 +139,19 @@ public class EventController {
 	}
 
 	@GetMapping("/{id}")
-	public String showOneEvent(@PathVariable("id") Long id, Model model, HttpSession session) {
+	public String showOneEvent(@PathVariable("id") Long id, Model model, HttpSession session, @ModelAttribute("comment") Comment comment) {
 		User user = userService.getOne((Long) session.getAttribute("user_id"));
 		model.addAttribute("user", user);
 
 		Event event = eventService.getOne(id);
 		model.addAttribute("event", event);
+		
+		List <Comment> comments = event.getCommentOnEvent(); 
+		
+		model.addAttribute("comments", comments);
+		
+		System.out.println(comments);
+		
 
 		return "one_event.jsp";
 	}

@@ -73,6 +73,11 @@ public class Event {
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "rsvps", joinColumns = @JoinColumn(name = "event_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
 	private List<User> attendees;
+	
+	//many to one for users to middle table comments to events
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "comments", joinColumns = @JoinColumn(name = "event_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
+	private List<Comment> commentOnEvent;
 
 	protected void whenCreated() {
 		this.date = new Date();
@@ -192,5 +197,14 @@ public class Event {
 
 	public void setLatLng(String latLng) {
 		this.latLng = latLng;
+	}
+
+
+	public List<Comment> getCommentOnEvent() {
+		return commentOnEvent;
+	}
+
+	public void setCommentOnEvent(List<Comment> commentOnEvent) {
+		this.commentOnEvent = commentOnEvent;
 	}
 }

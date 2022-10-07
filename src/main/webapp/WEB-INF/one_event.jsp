@@ -9,6 +9,7 @@
 <%@ page isErrorPage="true"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 <!DOCTYPE html>
 <html>
 
@@ -121,36 +122,42 @@
 	</nav>
 	<!-- Navbar -->
 	<row class="d-flex justify-content-between mx-4">
-	<h1 class="d-flex justify-content-start header" style="margin:10px;">
+	<h1 class="d-flex justify-content-start header" style="margin: 10px;">
 		Hello,
 		<c:out value="${user.userName }" />
 	</h1>
 	<div class="d-flex align-items-center">
 
-		<c:set var="isRsvped" value="false"/>
+		<c:set var="isRsvped" value="false" />
 		<c:forEach var="attendee" items="${event.attendees}">
-			<c:if test="${attendee.id == user.id}"> <c:set var="isRsvped" value="true"/></c:if>
-<%-- 			attendee ID is <c:out value="${attendee.id}"></c:out> --%>
+			<c:if test="${attendee.id == user.id}">
+				<c:set var="isRsvped" value="true" />
+			</c:if>
+			<%-- 			attendee ID is <c:out value="${attendee.id}"></c:out> --%>
 		</c:forEach>
 
 
 
 		<c:if test="${user.id.equals(event.hostedBy.organizer.id)}">
-			<a href="/events/${event.id}/edit"><button class="btn btn-warning mx-4">Edit Event</button></a></c:if>
-	<c:if test="${isRsvped == 'false'}">
-	<form action="/events/rsvp/${event.id}" method="post" class="d-flex justify-content-end">
-		<h1 class="header mx-2 mt-2">RSVP:</h1>
-		
-								
-							
-		<input type="checkbox" name = "rsvp" style="width:25px;" class="custom-control custom-checkbox checkbox-lg mx-2"/>
-		<button class="info my-3 btn btn-info">Submit</button>
-	</form> 
-	</c:if>
+			<a href="/events/${event.id}/edit"><button
+					class="btn btn-warning mx-4">Edit Event</button></a>
+		</c:if>
+		<c:if test="${isRsvped == 'false'}">
+			<form action="/events/rsvp/${event.id}" method="post"
+				class="d-flex justify-content-end">
+				<h1 class="header mx-2 mt-2">RSVP:</h1>
 
-	<%-- <a href="/rsvp/${event.id}"><button style="width:25px; height:50px;"></button></a> --%>
-	
-</div>
+
+
+				<input type="checkbox" name="rsvp" style="width: 25px;"
+					class="custom-control custom-checkbox checkbox-lg mx-2" />
+				<button class="info my-3 btn btn-info">Submit</button>
+			</form>
+		</c:if>
+
+		<%-- <a href="/rsvp/${event.id}"><button style="width:25px; height:50px;"></button></a> --%>
+
+	</div>
 	</row>
 
 
@@ -196,8 +203,54 @@
 								<h3>Open to Public: No</h3>
 							</c:if></li>
 					</h3>
-					<input type="hidden" class="form-control mx-2" id="location-input" value="${event.latLng}">
+					<input type="hidden" class="form-control mx-2" id="location-input"
+						value="${event.latLng}">
 				</ul>
+				
+				<table class="table table-hover">
+				<thead>
+					<tr>
+						<th scope="col">User</th>
+						<th scope="col">Comment</th>
+						<th scope="col">Date</th>
+						<th scope="col">Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="comment" items="${comments}">
+						<tr>
+							<td><c:out value="${comment.user_id.userName}"></c:out></td>
+							
+							<td><c:out value="${comment.content}"></c:out></td>
+							<td><fmt:formatDate value="${comment.createdAt}" pattern="MMMM dd, yyyy"></fmt:formatDate></td>
+							
+<%-- 							<td>
+								<a href="/events/${event.id}">view</a>
+								| <a href="/events/${event.id}/attendees">RSVP LIST</a>
+								<c:if test="${user.id == event.attendees[0].id}">
+									| <a href="/events/${event.id}/edit">edit</a> |
+									<a href="/events/${event.id}/delete">delete</a>
+								</c:if>
+							</td> --%>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+				
+				<h1 class="header">Add A Comment</h1>
+				<form:form action="/events/${event.id}/comment" method="post" modelAttribute="comment">
+
+					<div class="form-group">
+						<form:label path="content">Comment:  </form:label>
+						<form:textarea path="content" class="form-control" />
+						
+					</div>
+					<form:errors class="text-danger" path="content"/>
+					<br>
+					<div>
+						<input type="submit" value="+ Add Comment" class="btn btn-info">
+					</div>
+				</form:form>
 
 			</div>
 
@@ -215,7 +268,7 @@
 
   } -->
 
-	<script src="/js/viewEventScript.js"></script> 	
+	<script src="/js/viewEventScript.js"></script>
 	</script>
 	<script async defer
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA246nlIjYYGu89FdDHR5g0NiJbIyr9L3k&callback=geocode"></script>

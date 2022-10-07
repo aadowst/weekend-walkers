@@ -69,6 +69,11 @@ public class User {
 	@JoinTable(name = "request", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "club_id"))
 	private List<Club> clubsRequestTo;
 	
+	//many to one for comments
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "comments", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "event_id"))
+	private List<Comment> userComments;
+	
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "rsvps", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "event_id"))
 	private List<Event> eventsAttended;
@@ -185,6 +190,15 @@ public class User {
 
 	public void setClubsRequestTo(List<Club> clubsRequestTo) {
 		this.clubsRequestTo = clubsRequestTo;
+	}
+
+
+	public List<Comment> getUserComments() {
+		return userComments;
+	}
+
+	public void setUserComments(List<Comment> userComments) {
+		this.userComments = userComments;
 	}
 	
 
