@@ -24,7 +24,7 @@
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 <link rel="stylesheet" type="text/css" href="/css/style.css">
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://unpkg.com/axios@0.25.0/dist/axios.min.js"></script>
 <title>View Event</title>
 
 </head>
