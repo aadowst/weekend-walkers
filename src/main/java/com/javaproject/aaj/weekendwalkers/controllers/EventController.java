@@ -75,6 +75,7 @@ public class EventController {
 		List<Comment> allEventComments = event.getCommentOnEvent();
 		allEventComments.add(comment);
 		commentService.save(comment);
+		System.out.println(allEventComments);
 		
 		
 //		List <User> comments = event.getUserCommentOnEvent();
@@ -150,7 +151,7 @@ public class EventController {
 		
 		model.addAttribute("comments", comments);
 		
-		System.out.println(comments);
+//		System.out.println(comments);
 		
 
 		return "one_event.jsp";
